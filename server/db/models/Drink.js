@@ -31,7 +31,7 @@ const Drink = db.define("drink", {
   },
   description: {
     type: Sequelize.TEXT,
-  }
+  },
 });
 
 module.exports = Drink;
