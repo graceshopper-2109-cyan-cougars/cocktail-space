@@ -29,6 +29,9 @@ const Drink = db.define("drink", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  description: {
+    type: Sequelize.TEXT,
+  }
 });
 
 module.exports = Drink;
