@@ -22,7 +22,6 @@ export const fetchingDrinks = () => {
 }
 
 
-
 //Drinks Sub-reducer
 export default function drinks(state = [], action) {
   switch (action.type) {
