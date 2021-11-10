@@ -14,7 +14,7 @@ export const fetchCart = (loggedIn) => {
       if (loggedIn) {
         const token = localStorage.getItem('token');
         cart = await (
-          await Axios.get('/api/cart/', { headers: { token } })
+          await Axios.get('/api/order/', { headers: { token } })
         ).data;
       }
       dispatch(getCart(cart));

@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const { Order, CartItem, User } = require('../db/index');
+const {
+  models: { Order, CartItem, User },
+} = require('../db/index');
 
 // find the user corresponding to the token, and return the items in that user's single active order ( the user's cart )
 router.get('/', async (req, res, next) => {
   try {
+    console.log(req.headers);
     const { id } = await User.findByToken(req.headers);
     const cart = await Order.findOne({ where: { userId: id, active: true } });
     if (!cart) {
