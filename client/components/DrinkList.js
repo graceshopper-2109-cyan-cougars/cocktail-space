@@ -4,25 +4,6 @@ import { setDrinks } from "../store/drinks";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-// const DrinkList extends React.Component {
-//   constructor(){
-//     super()
-//     this.state = {
-//       value: "all"
-//     }
-//     this.handleChange = this.handleChange.bind(this);
-//   }
-//   handleChange(evt){
-//     this.setState({value: evt.target.value});
-//   }
-//   render(){
-//     let drinksToRender = [];
-//     if(this.state.value === "all"){
-//       drinksToRender = this.props.drinks
-//     }
-//   }
-// }
-
 export class AllDrinks extends React.Component {
   constructor(){
     super()
@@ -32,8 +13,10 @@ export class AllDrinks extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(evt){
-    this.setState({value: evt.target.value});
+  handleChange(event){
+    console.log(event.target.value, "HERE IS THE EVT")
+    this.setState({value: event.target.value})
+    console.log(this.state, "STATE ON CHANGE****");
   }
 
   componentDidMount(){
@@ -45,32 +28,36 @@ export class AllDrinks extends React.Component {
     if(this.state.value === "All"){
       drinksToRender = drinks
     } else if(this.state.value === "Bourbon"){
-      drinksToRender = drinks.reduce(drink => drink.baseLiquor === 'Bourbon')
+      drinksToRender = drinks.filter(drink => drink.baseLiquor === 'Bourbon')
+    } else if(this.state.value === "Tequila"){
+      drinksToRender = drinks.filter(drink => drink.baseLiquor === 'Tequila')
+    } else if(this.state.value === "Vodka"){
+      drinksToRender = drinks.filter(drink => drink.baseLiquor === 'Vodka')
+    } else if(this.state.value === "Rum"){
+      drinksToRender = drinks.filter(drink => drink.baseLiquor === 'Rum')
     }
-    console.log(this.props.drinksFromRedux, "********")
 
-    const rowData = this.props.drinksFromRedux.map(row => {
-      return (
-        <tr key={row.id} className='drink-row'>
-          <td><Link to={`/drinks/${row.id}`}>{row.name}</Link></td>
-          <td><img src={row.image}></img></td>
-        </tr>
-      )
-    })
     return (
-      <div>
-      <div id="allContainer">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>{rowData}</tbody>
-      </table>
-      </div>
-      </div>
+           <>
+      <form>
+        <label>
+          Select available drinks:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="">-</option>
+            <option value="All">All</option>
+            <option value="Bourbon">Bourbon</option>
+            <option value="Tequila">Tequila</option>
+            <option value="Vodka">Vodka</option>
+            <option value="Rum">Rum</option>
+          </select>
+        </label>
+      </form>
+        <div className="drink-list">
+          {drinksToRender.map((item, index)=>{
+            return <SingleDrink key={item.id} drink={item} />
+          })}
+        </div>
+      </>
     );
   }
 }
