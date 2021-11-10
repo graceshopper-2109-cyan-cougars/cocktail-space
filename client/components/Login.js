@@ -9,12 +9,7 @@ const Login = (props) => {
 
   return (
     <div className="login">
-      <Link to="/">
-        <img
-          className="login__logo"
-          src="https://mpng.subpng.com/20180205/iye/kisspng-cocktail-bartender-bartender-transparent-background-5a7822fda316b8.508700921517822717668.jpg"
-        />
-      </Link>
+      <Link to="/"></Link>
 
       <div className="login__container">
         <h1>Sign-in</h1>
@@ -35,16 +30,6 @@ const Login = (props) => {
           </button>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
-
-        <p>
-          By signing-in you agree to be 18 or Over. Otherwise, please go here:
-          {/* <Link
-            to={{
-              pathname: 'https://pbskids.org/daniel/',
-            }}
-            target="_blank"
-          /> */}
-        </p>
 
         <button onClick={handleSubmit} className="login__registerButton">
           Create your Drinkify Account
