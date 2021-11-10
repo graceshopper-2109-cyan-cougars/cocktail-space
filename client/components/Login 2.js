@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
-import { Link } from 'react-router-dom';
-// import './Login.css';
+import './Login.css';
 
 const Login = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
     <div className="login">
-      <Link to="/"></Link>
+      <Link to="/">
+        <img
+          className="login__logo"
+          src="https://mpng.subpng.com/20180205/iye/kisspng-cocktail-bartender-bartender-transparent-background-5a7822fda316b8.508700921517822717668.jpg"
+        />
+      </Link>
 
       <div className="login__container">
         <h1>Sign-in</h1>
@@ -30,6 +34,16 @@ const Login = (props) => {
           </button>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
+
+        <p>
+          By signing-in you agree to be 18 or Over. Otherwise, please go here:
+          <Link
+            to={{
+              pathname: 'https://pbskids.org/daniel/',
+            }}
+            target="_blank"
+          />
+        </p>
 
         <button onClick={handleSubmit} className="login__registerButton">
           Create your Drinkify Account
@@ -68,5 +82,5 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export const Logged = connect(mapLogin, mapDispatch)(Login);
+export const LoggedIn = connect(mapLogin, mapDispatch)(Login);
 export const Signup = connect(mapSignup, mapDispatch)(Login);
