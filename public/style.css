@@ -1,5 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 a {
@@ -19,7 +25,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-/*  Login Component */
+/*  LOGIN COMPONENT */
 .login {
   background: rgb(238, 238, 174);
   background: radial-gradient(
@@ -93,4 +99,65 @@ form div {
   margin-top: 65px;
   border-color: darkgray;
   background: #cfc3b2;
+}
+
+/* POPUP COMPONENT */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 30%;
+  max-width: 600px;
+  background-color: #747474;
+  border: 3px solid #009688;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 5px 5px 6px black;
+}
+
+.popup-inner .close-btn {
+  background-color: #009688;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  letter-spacing: 0.1em;
+  padding: 0.5em 0em;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1.5px;
+  margin: 10px;
+}
+.ageVerification {
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: white;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.disclaimer {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  letter-spacing: 0.5px;
+  margin: 10px;
+}
+
+small {
+  text-align: center;
+  margin: 10px;
 }
