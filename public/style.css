@@ -6,6 +6,12 @@
 
 body {
   font-family: 'Nunito', sans-serif;
+  background: rgb(238, 238, 174);
+  background: radial-gradient(
+    circle,
+    rgba(238, 238, 174, 1) 0%,
+    rgba(0, 0, 0, 0.8939950980392157) 77%
+  );
 }
 
 a {
@@ -27,12 +33,7 @@ form div {
 }
 /*  LOGIN COMPONENT */
 .login {
-  background: rgb(238, 238, 174);
-  background: radial-gradient(
-    circle,
-    rgba(238, 238, 174, 1) 0%,
-    rgba(214, 157, 17, 1) 100%
-  );
+  background: white;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -120,15 +121,16 @@ form div {
   padding: 32px;
   width: 30%;
   max-width: 600px;
-  background-color: #747474;
-  border: 3px solid #009688;
-  border-radius: 5px;
+  background-color: #ffffff;
+  /* border: 0px solid #b7990d; */
+  border-radius: 1px;
   font-family: 'Nunito', sans-serif;
-  box-shadow: 5px 5px 6px black;
+  box-shadow: 7px 9px 17px black;
+  /* letter-spacing: 1px; */
 }
 
 .popup-inner .close-btn {
-  background-color: #009688;
+  background-color: #b7990d;
   color: #fff;
   text-decoration: none;
   display: inline-block;
@@ -142,22 +144,115 @@ form div {
 .ageVerification {
   font-size: 30px;
   letter-spacing: 3px;
-  color: white;
+  color: black;
   text-align: center;
   text-decoration: underline;
   text-decoration-thickness: 2px;
+  font-weight: 100;
 }
 
 .disclaimer {
   font-family: 'Nunito', sans-serif;
   font-size: 20px;
   text-align: center;
-  color: white;
+  color: black;
   letter-spacing: 0.5px;
   margin: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 small {
   text-align: center;
   margin: 10px;
+}
+
+/* NavBar Component*/
+
+.header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #110b11;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.storeName {
+  flex: 2;
+  object-fit: contains;
+  margin: 0 20px;
+  margin-top: 18px;
+  color: azure;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-weight: 100;
+}
+
+.header__search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 24px;
+}
+
+.header__optionLineOne {
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.header__optionLineTwo {
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.header__optionCart {
+  display: flex;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  margin-top: -10px;
+}
+
+.header__cartCount {
+  margin-left: 13px;
+  margin-right: 13px;
+}
+
+.cartImage {
+  color: white;
+  max-height: 27px;
+}
+
+.count {
+  color: #eeeae4;
+  font-size: 16px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 20px;
+}
+
+.header__option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}
+
+/* HOME COMPONENT   */
+.home {
+  justify-content: center;
+  display: flex;
+  color: white;
+  margin-top: 100px;
 }
