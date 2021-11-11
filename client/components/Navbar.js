@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import { logout } from '../store';
 
 const Navbar = ({ isLoggedIn, username, handleClick }) => (
@@ -33,7 +32,10 @@ const Navbar = ({ isLoggedIn, username, handleClick }) => (
           <span className='header__optionLineTwo header__cartCount'>
             {/* <span className='count'>{cart?.length}</span> */} 0
           </span>
-          {/* <ShoppingCartSharpIcon /> */}
+          <img
+            className='cartImage'
+            src='https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/ffffff/external-shopping-cart-miscellaneous-kiranshastry-lineal-kiranshastry.png'
+          />
         </div>
       </Link>
     </div>
