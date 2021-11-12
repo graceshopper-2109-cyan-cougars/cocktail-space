@@ -1,22 +1,28 @@
 //this is the access point for all things database related!
 
-const db = require("./db");
+const db = require('./db');
 
-const User = require("./models/User");
-const Drink = require("./models/Drink");
-const Cart = require("./models/Cart");
+const User = require('./models/User');
+const Drink = require('./models/Drink');
+const Order = require('./models/Order');
+const CartItem = require('./models/CartItem');
 
 //associations could go here!
-Cart.belongsTo(User);
+User.hasMany(Order);
+Order.belongsTo(User);
 
-Cart.belongsToMany(Drink, { through: "cart_drink" });
-Drink.belongsToMany(Cart, { through: "cart_drink" });
+Order.hasMany(CartItem);
+CartItem.belongsTo(Order);
+
+Drink.hasMany(CartItem);
+CartItem.belongsTo(Drink);
 
 module.exports = {
   db,
   models: {
     User,
     Drink,
-    Cart,
+    CartItem,
+    Order,
   },
 };
