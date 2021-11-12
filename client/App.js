@@ -17,8 +17,8 @@ const App = () => {
       <Navbar />
       <Routes />
       <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
-        <h3 className="ageVerification">Age Verification</h3>
-        <p className="disclaimer">
+        <h3 className='ageVerification'>Age Verification</h3>
+        <p className='disclaimer'>
           By clicking enter, I certify that I am over the age of 21 and will
           comply with the above statement.
           <br />

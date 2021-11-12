@@ -8,30 +8,30 @@ const Login = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div className="login">
-      <Link to="/"></Link>
+    <div className='login'>
+      <Link to='/'></Link>
 
-      <div className="login__container">
+      <div className='login__container'>
         <h1>Sign-in</h1>
 
         <form onSubmit={handleSubmit} name={name}>
           <h5>E-mail</h5>
-          <input type="text" name="username" />
+          <input type='text' name='username' />
 
           <h5>Password</h5>
-          <input type="password" name="password" />
+          <input type='password' name='password' />
 
           <button
-            type="submit"
+            type='submit'
             onClick={displayName}
-            className="login__signInButton"
+            className='login__signInButton'
           >
             Sign In
           </button>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
 
-        <button onClick={handleSubmit} className="login__registerButton">
+        <button onClick={handleSubmit} className='login__registerButton'>
           Create your Drinkify Account
           {/* Need newUserForm Component to fill out and history.push(/newUserForm) on click */}
         </button>

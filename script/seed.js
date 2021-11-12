@@ -1,6 +1,9 @@
-'use strict'
+'use strict';
 
-const {db, models: {User, Drink} } = require('../server/db')
+const {
+  db,
+  models: { User, Drink, Order, CartItem },
+} = require('../server/db');
 
 const seedDrinks = [
   {
@@ -10,7 +13,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/0DNucpJYn9A',
     stock: 15,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Tequila Sunrise',
@@ -19,7 +22,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/8-OxzaRSRaU',
     stock: 10,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Rum and Coke',
@@ -28,7 +31,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/woLpKjQisW8',
     stock: 15,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Berry Martini',
@@ -37,7 +40,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/XoN3v3Ge7EE',
     stock: 20,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Vodka Soda',
@@ -46,7 +49,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/5DjIG8epHok',
     stock: 20,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Mojito',
@@ -55,7 +58,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/yrNg91a3Opk',
     stock: 15,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Spiked Cherry Cola',
@@ -64,7 +67,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/gj7BLlSzIFs',
     stock: 15,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   {
     name: 'Margarita',
@@ -73,7 +76,7 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'https://unsplash.com/photos/vyrKOU7qZfM',
     stock: 25,
-    description: 'blah blah blah'
+    description: 'blah blah blah',
   },
   // {
   //   name: ,
@@ -84,7 +87,7 @@ const seedDrinks = [
   //   stock: ,
   //   description: 'blah blah blah'
   // },
-]
+];
 
 const seedUsers = [
   {
@@ -92,46 +95,86 @@ const seedUsers = [
     password: 'imhungry',
     firstName: 'Fettuccine',
     lastName: 'Alfredo',
-    isAdmin: true
+    isAdmin: true,
   },
   {
     username: 'risotto@gmail.com',
     password: 'imhungry',
     firstName: 'Mushroom',
     lastName: 'Risotto',
-    isAdmin: false
+    isAdmin: false,
   },
   {
     username: 'tortelloni@gmail.com',
     password: 'imhungry',
     firstName: 'Tortelloni',
     lastName: 'Pesto',
-    isAdmin: false
-  }
-]
+    isAdmin: false,
+  },
+];
 
+const seedOrders = [{ active: true }, { active: true }];
 
+const seedCartItems = [{ quantity: 1 }, { quantity: 2 }, { quantity: 1 }];
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log('db synced!');
 
   // Seeding Users
-  await Promise.all(seedUsers.map(user=>{
-    return User.create(user)
-  }))
+  await Promise.all(
+    seedUsers.map((user) => {
+      return User.create(user);
+    })
+  );
 
   // Seeding Drinks
-  await Promise.all(seedDrinks.map(drink=>{
-    return Drink.create(drink)
-  }))
+  await Promise.all(
+    seedDrinks.map((drink) => {
+      return Drink.create(drink);
+    })
+  );
 
-  db.close()
+  // seeding orders
+  await Promise.all(
+    seedOrders.map((order) => {
+      return Order.create(order);
+    })
+  );
 
+  // seeding cartItems
+  await Promise.all(
+    seedCartItems.map((cartItem) => {
+      return CartItem.create(cartItem);
+    })
+  );
+
+  // setting relations for orders, cartitems, and users
+  const user1 = await User.findByPk(1);
+  const user2 = await User.findByPk(2);
+
+  const order1 = await Order.findByPk(1);
+  const order2 = await Order.findByPk(2);
+
+  await order1.setUser(user1);
+  await order2.setUser(user2);
+
+  const cartItem1 = await CartItem.findByPk(1);
+  const cartItem2 = await CartItem.findByPk(2);
+  const cartItem3 = await CartItem.findByPk(3);
+
+  await order1.setCartItems([cartItem1, cartItem2]);
+  await order2.setCartItems([cartItem3]);
+
+  await cartItem1.setDrink(await Drink.findByPk(1));
+  await cartItem2.setDrink(await Drink.findByPk(2));
+  await cartItem3.setDrink(await Drink.findByPk(4));
+
+  db.close();
 }
 
 /*
@@ -140,16 +183,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...')
+  console.log('seeding...');
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log('closing db connection');
+    await db.close();
+    console.log('db connection closed');
   }
 }
 
@@ -159,8 +202,8 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;

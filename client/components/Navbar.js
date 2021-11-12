@@ -3,27 +3,42 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <h1>FS-App-Template</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
+const Navbar = ({ isLoggedIn, username, handleClick }) => (
+  //need cart state from redux to add items to cart icon
+  <div className='header'>
+    <Link to='/home'>
+      <h1 className='storeName'>Coctail Space</h1>
+    </Link>
+
+    <div className='header__nav'>
+      <Link to={!isLoggedIn && '/login'} style={{ textDecoration: 'none' }}>
+        <div className='header__option' onClick={handleClick}>
+          <span className='header__optionLineOne'>
+            Hello, {!username ? 'Guest' : username}
+          </span>
+          <span className='header__optionLineTwo'>
+            {username ? 'Sign Out' : 'Sign In'}
+          </span>
         </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+      </Link>
+      <Link to='/quiz'>
+        <div className='header__option'>
+          <span className='header__optionLineOne'>Drink Persona</span>
+          <span className='header__optionLineTwo'>& Quiz </span>
         </div>
-      )}
-    </nav>
-    <hr />
+      </Link>
+      <Link to='/checkout' style={{ textDecoration: 'none' }}>
+        <div className='header__optionCart'>
+          <span className='header__optionLineTwo header__cartCount'>
+            {/* <span className='count'>{cart?.length}</span> */} 0
+          </span>
+          <img
+            className='cartImage'
+            src='https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/ffffff/external-shopping-cart-miscellaneous-kiranshastry-lineal-kiranshastry.png'
+          />
+        </div>
+      </Link>
+    </div>
   </div>
 );
 
@@ -33,6 +48,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    username: state.auth.username,
   };
 };
 

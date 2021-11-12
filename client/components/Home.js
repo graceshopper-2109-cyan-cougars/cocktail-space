@@ -1,23 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-export const Home = (props) => {
-  const { username } = props;
-
+function Home() {
+  //Joe- this is homepage for dropdown of coctails
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h1 className='home'>Homepage where Dropdown lives</h1>
     </div>
   );
-};
+}
 
-/**
- * CONTAINER
- */
-const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
-
-export default connect(mapState)(Home);
+export default Home;
