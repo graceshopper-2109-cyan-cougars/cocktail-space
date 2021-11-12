@@ -1,7 +1,7 @@
   import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // import './Login.css';
 
 const Login = (props) => {
@@ -23,7 +23,7 @@ const Login = (props) => {
 
           <button
             type='submit'
-            onClick={displayName}
+            // onClick={displayName}
             className='login__signInButton'
           >
             Sign In
@@ -32,7 +32,7 @@ const Login = (props) => {
         </form>
 
         <button onClick={handleSubmit} className='login__registerButton'>
-          Create your Drinkify Account
+          Create your Cocktail Store Account
           {/* Need newUserForm Component to fill out and history.push(/newUserForm) on click */}
         </button>
       </div>

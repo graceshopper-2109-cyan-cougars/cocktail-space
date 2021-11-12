@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Popup from './components/Popup';
 import Navbar from './components/Navbar';
 import Routes from './Routes';
+import { fetchCart } from './store/cart.js';
 
 const App = () => {
   const [timedPopup, setTimedPopup] = useState(false);
+  const dispatch = useDispatch();
+
+  const loggedIn = useSelector((state) => {
+    return !!state.auth.id;
+  });
+  const me = useSelector((state) => {
+    return state.auth;
+  });
 
   useEffect(() => {
     setTimeout(() => {
       setTimedPopup(true);
     }, 600);
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchCart(loggedIn));
+  }, [me]);
 
   return (
     <div>
