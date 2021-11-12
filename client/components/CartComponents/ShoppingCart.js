@@ -15,17 +15,27 @@ class ShoppingCart extends React.Component {
       <div className='shopping-cart-container'>
         Your Shopping Cart
         <div className='cart-entry-container'>
-          {/* {cart.map((item) => {
-            // hook up state.drinks later
-            const drink = this.state.drinks[item.drinkId];
-            subtotal += this.state.drinks[item.drinkId].price * item.quantity;
-            <CartEntry props={drink} />;
-          })} */}
+          {cart.length == 0 ? (
+            <div> Your cart is empty!</div>
+          ) : (
+            cart.map((item) => {
+              // hook up state.drinks later
+              const drink = this.state.drinks[item.drinkId];
+              subtotal += this.state.drinks[item.drinkId].price * item.quantity;
+              <CartEntry props={drink} />;
+            })
+          )}
         </div>
-        <div>Subtotal: ${subtotal}</div>
-        <div>Shipping: $9.99</div>
-        <hr />
-        <div>Total: ${subtotal + 9.99}</div>
+        {cart.length == 0 ? (
+          <div></div>
+        ) : (
+          <div className='order-price-details'>
+            <div>Subtotal: ${subtotal}</div>
+            <div>Shipping: $9.99</div>
+            <hr />
+            <div>Total: ${subtotal + 9.99}</div>
+          </div>
+        )}
         <Link to='/home'>Continue Shopping</Link>
         <Link to='/checkout'>Proceed to Checkout</Link>
       </div>
