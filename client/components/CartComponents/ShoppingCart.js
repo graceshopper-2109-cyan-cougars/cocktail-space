@@ -1,36 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCart } from '../../store/cart';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   constructor() {
     super();
   }
 
-  componentDidMount() {
-    const { loggedIn, loadCart } = this.props;
-    loadCart(loggedIn);
-  }
-
   render() {
+    const { cart } = this.props;
+
+    let subtotal = 0;
     return (
       <div className='shopping-cart-container'>
         Your Shopping Cart
-        <div> </div>
+        <div className='cart-entry-container'>
+          {/* {cart.map((item) => {
+            // hook up state.drinks later
+            const drink = this.state.drinks[item.drinkId];
+            subtotal += this.state.drinks[item.drinkId].price * item.quantity;
+            <CartEntry props={drink} />;
+          })} */}
+        </div>
+        <div>Subtotal: ${subtotal}</div>
+        <div>Shipping: $9.99</div>
+        <hr />
+        <div>Total: ${subtotal + 9.99}</div>
+        <Link to='/home'>Continue Shopping</Link>
+        <Link to='/checkout'>Proceed to Checkout</Link>
       </div>
     );
   }
 }
 
-const mapState = ({ auth, cart }) => ({
-  loggedIn: !!auth.id,
-  cart: cart,
-});
-
-const mapDispatch = (dispatch) => {
+const mapState = (state) => {
   return {
-    loadCart: (loggedIn) => dispatch(fetchCart(loggedIn)),
+    cart: state.cart,
   };
 };
 
-export default connect(mapState, mapDispatch)(ShoppingCart);
+export default connect(mapState)(ShoppingCart);
