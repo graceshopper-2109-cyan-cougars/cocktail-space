@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 
-const Navbar = ({ isLoggedIn, username, handleClick }) => (
+const Navbar = ({ isLoggedIn, username, handleClick, cart }) => (
   //need cart state from redux to add items to cart icon
   <div className='header'>
     <Link to='/home'>
@@ -27,10 +27,10 @@ const Navbar = ({ isLoggedIn, username, handleClick }) => (
           <span className='header__optionLineTwo'>& Quiz </span>
         </div>
       </Link>
-      <Link to='/checkout' style={{ textDecoration: 'none' }}>
+      <Link to='/cart' style={{ textDecoration: 'none' }}>
         <div className='header__optionCart'>
           <span className='header__optionLineTwo header__cartCount'>
-            {/* <span className='count'>{cart?.length}</span> */} 0
+            <span className='count'>{cart.length}</span>
           </span>
           <img
             className='cartImage'
@@ -49,6 +49,7 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     username: state.auth.username,
+    cart: state.cart,
   };
 };
 

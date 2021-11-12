@@ -6,8 +6,7 @@ const {
 // find the user corresponding to the token, and return the items in that user's single active order ( the user's cart )
 router.get('/', async (req, res, next) => {
   try {
-    console.log(req.headers);
-    const { id } = await User.findByToken(req.headers);
+    const { id } = await User.findByToken(req.headers.token);
     const cart = await Order.findOne({ where: { userId: id, active: true } });
     if (!cart) {
       return next();
@@ -23,7 +22,7 @@ router.get('/', async (req, res, next) => {
 // find the user corresponding to the token, and add an item to their single active order ( the user's cart )
 router.post('/', async (req, res, next) => {
   try {
-    const { id } = await User.findByToken(req.headers);
+    const { id } = await User.findByToken(req.headers.token);
     let cart = await Order.findOne({ where: { userId: id, active: true } });
     // if the user doesn't have an active cart, create a new empty cart
     if (!cart) {
