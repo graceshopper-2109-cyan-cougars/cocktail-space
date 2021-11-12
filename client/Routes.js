@@ -1,12 +1,16 @@
+//Import Modules
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { me } from './store';
+
+//Import Components
 import { Logged, Signup } from './components/Login';
 import Home from './components/Home';
 import ShoppingCart from './components/CartComponents/ShoppingCart';
 import Quiz from './components/Quiz';
-import { me } from './store';
 import AllDrinks from './components/DrinkList';
+import SingleDrinkDetail from './components/SingleDrinkDetail';
 
 /**
  * COMPONENT
@@ -25,7 +29,8 @@ class Routes extends Component {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/home' exact component={Home} />
-            <Route path='/drinks' component={AllDrinks} />
+            <Route exact path='/drinks' component={AllDrinks} />
+            <Route path = '/drinks/:id' component ={SingleDrinkDetail}/>
             <Route path='/login' component={Logged} />
             <Route path='/signup' component={Signup} />
             <Route path='/cart' exact component={ShoppingCart} />
