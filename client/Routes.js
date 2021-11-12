@@ -4,7 +4,9 @@ import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Logged, Signup } from './components/Login';
 import Home from './components/Home';
 import ShoppingCart from './components/CartComponents/ShoppingCart';
+import Quiz from './components/Quiz';
 import { me } from './store';
+import AllDrinks from './components/DrinkList';
 
 /**
  * COMPONENT
@@ -19,20 +21,17 @@ class Routes extends Component {
 
     return (
       <div>
-        {isLoggedIn ? (
-          <Switch>
-            <Route path='/home' component={Home} />
-            {/* <Redirect to='/home' /> */}
-            <Route path='/cart' exact component={ShoppingCart} />
-          </Switch>
-        ) : (
+        {
           <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/home' exact component={Home} />
+            <Route path='/drinks' component={AllDrinks} />
             <Route path='/login' component={Logged} />
             <Route path='/signup' component={Signup} />
             <Route path='/cart' exact component={ShoppingCart} />
+            <Route path='/quiz' component={Quiz} />
           </Switch>
-        )}
+        }
       </div>
     );
   }

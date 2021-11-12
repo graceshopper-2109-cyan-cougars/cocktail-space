@@ -15,7 +15,7 @@ class ShoppingCart extends React.Component {
       <div className='shopping-cart-container'>
         Your Shopping Cart
         <div className='cart-entry-container'>
-          {cart.length == 0 ? (
+          {/* {cart.length == 0 ? (
             <div> Your cart is empty!</div>
           ) : (
             cart.map((item) => {
@@ -24,7 +24,7 @@ class ShoppingCart extends React.Component {
               subtotal += this.state.drinks[item.drinkId].price * item.quantity;
               <CartEntry props={drink} />;
             })
-          )}
+          )} */}
         </div>
         {cart.length == 0 ? (
           <div></div>
