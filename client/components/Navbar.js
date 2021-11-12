@@ -6,7 +6,7 @@ import { logout } from '../store';
 const Navbar = ({ isLoggedIn, username, handleClick }) => (
   //need cart state from redux to add items to cart icon
   <div className='header'>
-    <Link to='/'>
+    <Link to='/home'>
       <h1 className='storeName'>Coctail Space</h1>
     </Link>
 
