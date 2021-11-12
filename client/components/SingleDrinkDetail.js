@@ -15,9 +15,11 @@ export class SingleDrinkDetail extends React.Component {
       <div>
         <img src = {currentDrink.image}></img>
         <p>Drink: {currentDrink.name}</p>
+        <p>Base: {currentDrink.baseLiquor}</p>
         <p>Price: {currentDrink.price}</p>
         <p>Alcohol Content: {currentDrink.alcoholContent}</p>
-        <p>{currentDrink.stock}</p>
+        <p>Current Stock: {currentDrink.stock}</p>
+        <p>{currentDrink.description}</p>
 
       </div>
     )
