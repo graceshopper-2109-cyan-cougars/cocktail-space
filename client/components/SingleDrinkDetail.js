@@ -1,3 +1,4 @@
+import { render } from 'enzyme';
 import React from 'react';
 import { connect } from 'react-redux'
 import { fetchingSingleDrink } from '../store/singledrinks';
@@ -7,15 +8,30 @@ export class SingleDrinkDetail extends React.Component {
     const { id } = this.props.match.params
     await this.props.getSingleDrink(id)
   }
-}
 
-const mapStateToProps = (state) => {
-  return {
-    singleDrinkDetail: state.singleDrink
+  render() {
+    const currentDrink = this.props.drinkFromRedux
+    return(
+      <div>
+        <img src = {currentDrink.image}></img>
+        <p>Drink: {currentDrink.name}</p>
+        <p>Price: {currentDrink.price}</p>
+        <p>Alcohol Content: {currentDrink.alcoholContent}</p>
+        <p>{currentDrink.stock}</p>
+
+      </div>
+    )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+
+const mapState = (state) => {
+  return {
+    drinkFromRedux: state.singleDrink
+  }
+}
+
+const mapDispatch = (dispatch) => {
   return {
     getSingleDrink: (id) => {
       dispatch(fetchingSingleDrink(id))
@@ -23,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SingleDrinkDetail)
+export default connect(mapState,mapDispatch)(SingleDrinkDetail)
