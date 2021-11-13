@@ -73,13 +73,9 @@ export function getFunName() {
     'single-malt',
     'cup',
     'splash',
-    'analyses',
-    'diagnoses',
     'oases',
-    'theses',
-    'crises',
-    'phenomena',
-    'criteria',
+    'sour',
+    'julep',
     'splash',
   ];
 

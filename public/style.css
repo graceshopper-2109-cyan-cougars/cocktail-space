@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.2px;
+  font-weight: 100;
 }
 
 body {
@@ -31,7 +33,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
 /*  LOGIN COMPONENT */
+
 .login {
   background: white;
   height: 100vh;
@@ -122,11 +126,8 @@ form div {
   width: 30%;
   max-width: 600px;
   background-color: #ffffff;
-  /* border: 0px solid #b7990d; */
   border-radius: 1px;
   font-family: 'Nunito', sans-serif;
-  box-shadow: 7px 9px 17px black;
-  /* letter-spacing: 1px; */
 }
 
 .popup-inner .close-btn {
@@ -249,18 +250,247 @@ small {
   color: white;
 }
 
-/* QUIZ COMPONENT */
-
-
-
-
-
-
-
 /* HOME COMPONENT   */
 .home {
   justify-content: center;
   display: flex;
   color: white;
   margin-top: 100px;
+}
+
+/* CART COMPONENT  */
+.shopping-cart-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#cart-title-text {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.order-price-details {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+hr {
+  width: 70%;
+  margin: auto;
+}
+
+.shipping-text {
+  margin-bottom: 27px;
+}
+
+.subtotal-text {
+  margin-top: 5px;
+}
+
+/* CART ENTRY COMPONENT */
+.cart-entry-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-entry-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+  width: 800px;
+  height: 130px;
+  border: none;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+}
+
+.shopping-cart-container button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+
+  background: #b7990d;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #dfdedf;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.shopping-cart-container button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.cart-entry-quantity {
+  display: flex;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add {
+  margin-bottom: 2px;
+}
+
+.qty {
+  padding: 7px 7px;
+}
+
+.buttons-container > button {
+  padding: 0px;
+  width: 30px;
+}
+
+.cart-options .option {
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+
+  height: 50px;
+  padding-top: 25px;
+  width: 210px;
+  border: none;
+  border-radius: 6px;
+  background-color: #b7990d;
+}
+
+/* QUIZ COMPONENT */
+
+.quizWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.quiz {
+  background-color: white;
+  width: 500px;
+  min-height: 200px;
+  height: min-content;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.personaScore-section {
+  display: flex;
+  font-size: 21px;
+  flex-wrap: wrap;
+  align-content: center;
+  text-align: center;
+  font-weight: 100;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.persona {
+  font-weight: 600;
+  display: flex;
+  color: #ff9800;
+  align-items: center;
+  justify-content: center;
+  margin-top: 11px;
+  font-size: 28px;
+}
+
+.question-section {
+  width: 100%;
+  position: relative;
+}
+
+.question-count {
+  margin-bottom: 20px;
+}
+
+.question-count span {
+  font-size: 28px;
+}
+
+.question-text {
+  /* margin-bottom: 13px; */
+  font-size: 17px;
+  margin: 15px;
+}
+
+.timer-text {
+  background: rgb(230, 153, 12);
+  padding: 15px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 5px solid rgb(255, 189, 67);
+  border-radius: 15px;
+  text-align: center;
+}
+.answer-section {
+  width: 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.quizButton {
+  width: 100%;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #b7990d;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #b7990d;
+  cursor: pointer;
+  font-weight: 100;
+}
+button:hover {
+  background-color: #ebae06;
+}
+
+button:focus {
+  outline: none;
+}
+
+button svg {
+  margin-right: 5px;
+}
+
+.boldScore {
+  font-weight: 600;
+  margin: 5px;
+}
+
+.randomImg {
+  box-shadow: 10px 5px 5px gray;
+}
+.mageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cart-options > .option {
+  margin: 30px;
 }
