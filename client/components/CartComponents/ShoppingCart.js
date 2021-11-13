@@ -14,7 +14,7 @@ class ShoppingCart extends React.Component {
     let subtotal = 0;
     return (
       <div className='shopping-cart-container'>
-        Your Shopping Cart
+        <div id='cart-title-text'>Your Shopping Cart</div>
         <div className='cart-entry-list-container'>
           {cart.length == 0 ? (
             <div> Your cart is empty!</div>
@@ -30,18 +30,36 @@ class ShoppingCart extends React.Component {
           <div></div>
         ) : (
           <div className='order-price-details'>
-            <div>Subtotal: ${subtotal}</div>
-            <div>Shipping: $9.99</div>
+            <div className='subtotal-text'>Subtotal: ${subtotal}</div>
+            <div className='shipping-text'>Shipping: $9.99</div>
             <hr />
-            <div>Total: ${subtotal + 9.99}</div>
+            <div className='subtotal-text'>Total: ${subtotal + 9.99}</div>
           </div>
         )}
         <div className='cart-options'>
           <div className='option'>
-            <Link to='/home'>Continue Shopping</Link>
+            <Link
+              to='/home'
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                fontSize: '20px',
+              }}
+            >
+              Continue Shopping
+            </Link>
           </div>
           <div className='option'>
-            <Link to='/checkout'>Proceed to Checkout</Link>
+            <Link
+              to='/checkout'
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                fontSize: '20px',
+              }}
+            >
+              Proceed to Checkout
+            </Link>
           </div>
         </div>
       </div>

@@ -264,7 +264,30 @@ small {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 30px;
+}
+
+#cart-title-text {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.order-price-details {
   margin-top: 20px;
+  font-size: 20px;
+}
+
+hr {
+  width: 70%;
+  margin: auto;
+}
+
+.shipping-text {
+  margin-bottom: 27px;
+}
+
+.subtotal-text {
+  margin-top: 5px;
 }
 
 /* CART ENTRY COMPONENT */
@@ -332,6 +355,17 @@ small {
 .buttons-container > button {
   padding: 0px;
   width: 30px;
+}
+
+.cart-options .option {
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+
+  height: 50px;
+  padding-top: 25px;
+  width: 210px;
+  border: none;
+  border-radius: 6px;
+  background-color: #b7990d;
 }
 
 /* QUIZ COMPONENT */
