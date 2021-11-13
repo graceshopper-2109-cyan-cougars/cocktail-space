@@ -27,10 +27,10 @@ class Routes extends Component {
       <div>
         {
           <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/home' exact component={Home} />
+            <Route path='/' exact component={AllDrinks} />
+            <Route path='/home' exact component={AllDrinks} />
             <Route exact path='/drinks' component={AllDrinks} />
-            <Route path = '/drinks/:id' component ={SingleDrinkDetail}/>
+            <Route path='/drinks/:id' component={SingleDrinkDetail} />
             <Route path='/login' component={Logged} />
             <Route path='/signup' component={Signup} />
             <Route path='/cart' exact component={ShoppingCart} />

@@ -1,10 +1,10 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const axios = require("axios");
+const Sequelize = require('sequelize');
+const db = require('../db');
+const axios = require('axios');
 
-const CartItem = db.define("cartItem", {
+const CartItem = db.define('cartItem', {
   quantity: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
     defaultValue: 1,
     validate: {
