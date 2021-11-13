@@ -5,8 +5,13 @@ import { logout } from '../store';
 
 const Navbar = ({ isLoggedIn, username, handleClick, cart }) => {
   let cartSize = 0;
-  if (cart) {
+  if (isLoggedIn && cart) {
     cartSize = cart.reduce((accum, item) => accum + item.quantity, 0);
+  } else if (!isLoggedIn && JSON.parse(localStorage.getItem('cart'))) {
+    JSON.parse(localStorage.getItem('cart')).reduce(
+      (accum, item) => accum + item.quantity,
+      0
+    );
   }
   return (
     //need cart state from redux to add items to cart icon
@@ -35,14 +40,7 @@ const Navbar = ({ isLoggedIn, username, handleClick, cart }) => {
         <Link to='/cart' style={{ textDecoration: 'none' }}>
           <div className='header__optionCart'>
             <span className='header__optionLineTwo header__cartCount'>
-              <span className='count'>
-                {isLoggedIn
-                  ? cartSize
-                  : JSON.parse(localStorage.getItem('cart')).reduce(
-                      (accum, item) => accum + item.quantity,
-                      0
-                    )}
-              </span>
+              <span className='count'>{cartSize}</span>
             </span>
             <img
               className='cartImage'
