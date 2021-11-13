@@ -58,7 +58,8 @@ export const deleteItem = (loggedIn, cartItem) => {
         await Axios.delete(`/api/order/${cartItem.id}`);
         dispatch(_deleteItem(cartItem));
       } else {
-        const guestCart = JSON.parse(localStorage.getItem('cart'));
+        // UNFINISHED FINISHED THIS ONCE ADD TO CART BUTTON IS ADDED
+        // const guestCart = JSON.parse(localStorage.getItem('cart'));
       }
     } catch (e) {
       return 'something went wrong';

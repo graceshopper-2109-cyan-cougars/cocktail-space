@@ -64,8 +64,12 @@ class CartEntry extends React.Component {
             </button>
           </div>
         </div>
-        <div id='cart-entry-price'>{drink.price}</div>
-        <button type='button' onClick={this.handleClick}>
+        <div id='cart-entry-price'>${drink.price}</div>
+        <button
+          className='remove-from-cart-button'
+          type='button'
+          onClick={this.handleClick}
+        >
           X
         </button>
       </div>

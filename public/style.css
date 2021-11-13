@@ -250,8 +250,6 @@ small {
   color: white;
 }
 
-/* QUIZ COMPONENT */
-
 /* HOME COMPONENT   */
 .home {
   justify-content: center;
@@ -266,6 +264,7 @@ small {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 20px;
 }
 
 /* CART ENTRY COMPONENT */
@@ -283,8 +282,34 @@ small {
   margin: 10px;
   width: 800px;
   height: 130px;
-  border: 1px solid;
+  border: none;
   border-radius: 16px;
+  background-color: white;
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+}
+
+.shopping-cart-container button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+
+  background: #6e6d70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #dfdedf;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.shopping-cart-container button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }
 
 .cart-entry-quantity {
@@ -297,13 +322,15 @@ small {
 }
 
 .qty {
-  padding: 11px 7px;
+  padding: 7px 7px;
 }
 
 .buttons-container > button {
   padding: 0px;
   width: 30px;
 }
+
+/* QUIZ COMPONENT */
 
 .quizWrapper {
   display: flex;
