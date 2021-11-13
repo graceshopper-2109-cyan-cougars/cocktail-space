@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signUp } from "../store/signup";
+import { authenticate } from "../store";
 
 class SignUp extends React.Component{
   constructor(){
@@ -25,6 +26,7 @@ class SignUp extends React.Component{
   async handleSubmit(evt){
     evt.preventDefault();
     await this.props.newUser({...this.state});
+    await this.props.login({...this.state});
   }
 
   render(){
@@ -66,7 +68,8 @@ class SignUp extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) =>({
-  newUser: (user) => dispatch(signUp(user))
+  newUser: (user) => dispatch(signUp(user)),
+  login: (user) => dispatch(authenticate(user.username, user.password, 'login'))
 })
 
 export default connect(null, mapDispatchToProps)(SignUp)

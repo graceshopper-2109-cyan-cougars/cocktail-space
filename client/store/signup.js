@@ -16,6 +16,7 @@ const _signUp = (user) => {
 export const signUp = (user) => {
   return async(dispatch) =>{
     const {data} = await axios.post("/auth/signup", user);
+    history.push('/home')
     dispatch(_signUp(data))
   }
 }
