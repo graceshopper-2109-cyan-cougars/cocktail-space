@@ -30,7 +30,11 @@ const Navbar = ({ isLoggedIn, username, handleClick, cart }) => (
       <Link to='/cart' style={{ textDecoration: 'none' }}>
         <div className='header__optionCart'>
           <span className='header__optionLineTwo header__cartCount'>
-            <span className='count'>{cart.length}</span>
+            <span className='count'>
+              {isLoggedIn
+                ? cart.length
+                : JSON.parse(localStorage.getItem('cart')).length}
+            </span>
           </span>
           <img
             className='cartImage'

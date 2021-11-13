@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CartEntry from './CartEntry';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -8,23 +9,22 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { cart, drinks } = this.props;
 
     let subtotal = 0;
     return (
       <div className='shopping-cart-container'>
         Your Shopping Cart
-        <div className='cart-entry-container'>
-          {/* {cart.length == 0 ? (
+        <div className='cart-entry-list-container'>
+          {cart.length == 0 ? (
             <div> Your cart is empty!</div>
           ) : (
             cart.map((item) => {
-              // hook up state.drinks later
-              const drink = this.state.drinks[item.drinkId];
-              subtotal += this.state.drinks[item.drinkId].price * item.quantity;
-              <CartEntry props={drink} />;
+              const drink = drinks[item.drinkId - 1];
+              subtotal += drinks[item.drinkId - 1].price * item.quantity;
+              return <CartEntry key={item.id} drink={drink} cartItem={item} />;
             })
-          )} */}
+          )}
         </div>
         {cart.length == 0 ? (
           <div></div>
@@ -36,8 +36,14 @@ class ShoppingCart extends React.Component {
             <div>Total: ${subtotal + 9.99}</div>
           </div>
         )}
-        <Link to='/home'>Continue Shopping</Link>
-        <Link to='/checkout'>Proceed to Checkout</Link>
+        <div className='cart-options'>
+          <div className='option'>
+            <Link to='/home'>Continue Shopping</Link>
+          </div>
+          <div className='option'>
+            <Link to='/checkout'>Proceed to Checkout</Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -46,6 +52,7 @@ class ShoppingCart extends React.Component {
 const mapState = (state) => {
   return {
     cart: state.cart,
+    drinks: state.drinks,
   };
 };
 

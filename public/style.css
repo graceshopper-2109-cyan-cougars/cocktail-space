@@ -251,16 +251,65 @@ small {
 
 /* QUIZ COMPONENT */
 
-
-
-
-
-
-
 /* HOME COMPONENT   */
 .home {
   justify-content: center;
   display: flex;
   color: white;
   margin-top: 100px;
+}
+
+/* CART COMPONENT  */
+.shopping-cart-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* CART ENTRY COMPONENT */
+.cart-entry-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-entry-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+  width: 800px;
+  height: 130px;
+  border: 1px solid;
+  border-radius: 16px;
+}
+
+.cart-entry-quantity {
+  display: flex;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.qty {
+  padding: 11px 7px;
+}
+
+.buttons-container > button {
+  padding: 0px;
+  width: 30px;
+}
+
+.cart-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cart-options > .option {
+  margin: 30px;
 }

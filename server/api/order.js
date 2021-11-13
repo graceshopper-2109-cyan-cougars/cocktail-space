@@ -35,15 +35,20 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// find the cartItem to update with the passed in id, update accordingly
+// find the cartItem to update with the passed in orderId, update accordingly
 router.put('/:id', async (req, res, next) => {
   try {
-    const itemToUpdate = await CartItem.findOne({
-      where: { id: req.params.id },
-    });
-    const { qty } = req.body;
-    itemToUpdate.update({ quantity: qty });
-    res.send(itemToUpdate);
+    const { id } = await User.findByToken(req.body.token);
+
+    {
+      const itemToUpdate = await CartItem.findOne({
+        where: { id: req.params.id },
+      });
+      console.log(req.body);
+      const { qty } = req.body;
+      itemToUpdate.update({ quantity: qty });
+      res.send(itemToUpdate);
+    }
   } catch (e) {
     next(e);
   }
