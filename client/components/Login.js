@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
 import { Link, useHistory } from 'react-router-dom';
-// import './Login.css';
+
 
 const Login = (props) => {
   const { name, displayName, handleSubmit, error } = props;

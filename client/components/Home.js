@@ -1,4 +1,5 @@
 import React from 'react';
+import DrinkList from './DrinkList';
 
 function Home() {
   //Joe- this is homepage for dropdown of coctails
