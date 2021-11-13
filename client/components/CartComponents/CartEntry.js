@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateQty } from '../../store/cart.js';
+import auth from '../../store/auth.js';
+import { updateQty, deleteItem } from '../../store/cart.js';
 
 class CartEntry extends React.Component {
   constructor(props) {
@@ -10,13 +11,18 @@ class CartEntry extends React.Component {
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleAdd() {
     this.setState({
       quantity: this.state.quantity + 1,
     });
-    this.props.updateQty(true, this.props.cartItem.id, this.state.quantity + 1);
+    this.props.updateQty(
+      this.props.isLoggedIn,
+      this.props.cartItem,
+      this.state.quantity + 1
+    );
   }
   handleRemove() {
     if (this.state.quantity > 1) {
@@ -24,13 +30,18 @@ class CartEntry extends React.Component {
         quantity: this.state.quantity - 1,
       });
       this.props.updateQty(
-        true,
-        this.props.cartItem.id,
+        this.props.isLoggedIn,
+        this.props.cartItem,
         this.state.quantity - 1
       );
     }
   }
-  handleClick() {}
+  handleClick() {
+    this.setState({
+      quantity: 0,
+    });
+    this.props.deleteItem(this.props.isLoggedIn, this.props.cartItem);
+  }
 
   render() {
     const drink = this.props.drink;
@@ -62,11 +73,19 @@ class CartEntry extends React.Component {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapState = (state) => {
   return {
-    updateQty: (loggedIn, cartItemId, qty) =>
-      dispatch(updateQty(true, cartItemId, qty)),
+    isLoggedIn: !!state.auth.id,
   };
 };
 
-export default connect(null, mapDispatch)(CartEntry);
+const mapDispatch = (dispatch) => {
+  return {
+    updateQty: (loggedIn, cartItem, qty) =>
+      dispatch(updateQty(loggedIn, cartItem, qty)),
+    deleteItem: (loggedIn, cartItem) =>
+      dispatch(deleteItem(loggedIn, cartItem)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(CartEntry);
