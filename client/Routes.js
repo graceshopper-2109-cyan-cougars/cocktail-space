@@ -10,6 +10,7 @@ import Home from './components/Home';
 import ShoppingCart from './components/CartComponents/ShoppingCart';
 import Quiz from './components/Quiz';
 import AllDrinks from './components/DrinkList';
+import SignUp from './components/SignUp'
 import SingleDrinkDetail from './components/SingleDrinkDetail';
 
 /**
@@ -32,7 +33,7 @@ class Routes extends Component {
             <Route exact path='/drinks' component={AllDrinks} />
             <Route path='/drinks/:id' component={SingleDrinkDetail} />
             <Route path='/login' component={Logged} />
-            <Route path='/signup' component={Signup} />
+            <Route path='/signup' component={SignUp} />
             <Route path='/cart' exact component={ShoppingCart} />
             <Route path='/quiz' component={Quiz} />
           </Switch>

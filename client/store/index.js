@@ -6,9 +6,10 @@ import singleDrink from './singledrinks';
 import auth from './auth';
 import cart from './cart';
 import drinksReducer from './drinks';
+import signUpReducer from './signup';
 
+const reducer = combineReducers({ auth, drinks: drinksReducer, cart, signUp: signUpReducer, singleDrink });
 
-const reducer = combineReducers({ auth, drinks: drinksReducer, cart, singleDrink });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
