@@ -13,11 +13,8 @@ export class SingleDrinkDetail extends React.Component {
     return (
       <div className='singleDrinkContainer'>
         <div className='detailsWrapper'>
-          <img
-            className='detailsImage'
-            src='https://images.unsplash.com/photo-1629311782811-0676689953a4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2670&q=80'
-          ></img>
-          
+          <img className='detailsImage' src={currentDrink.image}></img>
+
           <button className='detailsButton'>Add to cart here</button>
           <div className='singleDrinkDesc'>
             <p>Drink: {currentDrink.name}</p>
