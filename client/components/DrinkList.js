@@ -37,10 +37,14 @@ export class AllDrinks extends React.Component {
 
     return (
       <>
-        <form>
+        <form className='form__allDrinks'>
           <label>
             Select available drinks:
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select
+              className='select'
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
               <option value=''>-</option>
               <option value='All'>All</option>
               <option value='Bourbon'>Bourbon</option>
@@ -54,7 +58,7 @@ export class AllDrinks extends React.Component {
           {drinksToRender.map((item, index) => {
             return (
               // <Link to={`/drinks/${item.id}`}>
-                <SingleDrink key={item.id} drink={item} />
+              <SingleDrink key={item.id} drink={item} />
             );
           })}
         </div>
