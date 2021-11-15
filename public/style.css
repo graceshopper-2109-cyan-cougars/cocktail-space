@@ -5,6 +5,7 @@
   letter-spacing: 1px;
   font-weight: 100;
   box-sizing: border-box;
+  /* width: 100%; */
 }
 
 body {
@@ -499,17 +500,20 @@ button svg {
 
 /* Individual cards */
 .card {
-  margin: 10px !important;
+  margin: 13px !important;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 13 2px 20px rgb(0 0 0 / 20%);
   overflow: hidden;
-  width: 300px;
+  width: 350px;
+  margin-bottom: 50px !important;
+  box-shadow: 6px 4px 15px black;
 }
 .card-header img {
   width: 100%;
   height: 300px;
   object-fit: cover;
+  /* box-shadow: 15px 5px 5px black; */
 }
 .card-body {
   display: flex;
@@ -552,12 +556,51 @@ button svg {
   margin: 0 0 40px !important;
 }
 
+/* Form Drop Down List (Homepage)*/
+
+label {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 35px;
+  font-family: 'Nunito';
+  letter-spacing: 2px;
+  margin: 47px;
+  color: black;
+}
+
+.select {
+  width: 25%;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #b7990d;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #b7990d;
+  cursor: pointer;
+  font-weight: 100;
+  text-align: center;
+  margin-top: 15px;
+}
+
 /* Drink list */
 .drink-list {
   display: flex;
-  /* width: 1040px; */
+  /* width: 1800px; */
   justify-content: space-evenly;
+  /* max-width: 1200px; */
+  /* flex-direction: row; */
+  /* flex: 0 0 33.3333333%; */
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  /* flex-direction: column; */
+  margin: 39px;
+  padding: 20px;
 }
 
 /* Single Details CSS*/
@@ -573,14 +616,16 @@ button svg {
   display: flex;
   width: 500px;
   color: black;
-  border: 3px solid black;
-  border-radius: 3px;
+  /* border: 3px solid white; */
+  /* border-radius: 32px; */
   text-align: center;
   line-height: 22px;
   letter-spacing: 1.5px;
   margin: 106px 0px 107px 0px;
   flex-direction: column;
   background-color: #ffffffcf;
+  box-shadow: 6px 4px 15px black;
+  border-radius: 33px;
 }
 
 .detailsButton {
@@ -604,4 +649,9 @@ button svg {
 .singleDrinkDesc {
   margin: 20px;
   line-height: 25px;
+}
+
+.detailsImage {
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
 }
