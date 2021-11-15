@@ -17,7 +17,7 @@ const Navbar = ({ isLoggedIn, username, handleClick, cart }) => {
     //need cart state from redux to add items to cart icon
     <div className='header'>
       <Link to='/home'>
-        <h1 className='storeName'>Coctail Space</h1>
+        <h1 className='storeName'>Cocktail Space</h1>
       </Link>
 
       <div className='header__nav'>
