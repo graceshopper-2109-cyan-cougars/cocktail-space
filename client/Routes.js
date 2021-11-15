@@ -10,7 +10,7 @@ import Home from './components/Home';
 import ShoppingCart from './components/CartComponents/ShoppingCart';
 import Quiz from './components/Quiz';
 import AllDrinks from './components/DrinkList';
-import SignUp from './components/SignUp'
+import SignUp from './components/SignUp';
 import SingleDrinkDetail from './components/SingleDrinkDetail';
 
 /**

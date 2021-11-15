@@ -24,11 +24,8 @@ router.post('/', async (req, res, next) => {
   try {
     const { id } = await User.findByToken(req.headers.token);
     let cart = await Order.findOne({ where: { userId: id, active: true } });
-    // if the user doesn't have an active cart, create a new empty cart
-    if (!cart) {
-      cart = await Order.create({ userId: id });
-    }
-    const newItem = await CartItem.create({ ...req.body, orderId: cart.id });
+    const newItem = await CartItem.create({ ...req.body });
+    await newItem.setOrder(cart.id);
     res.send(newItem);
   } catch (e) {
     next(e);

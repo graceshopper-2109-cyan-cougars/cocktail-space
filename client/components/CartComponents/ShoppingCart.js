@@ -58,7 +58,7 @@ class ShoppingCart extends React.Component {
                 fontSize: '20px',
               }}
             >
-              Proceed to Checkout
+              Checkout
             </Link>
           </div>
         </div>
