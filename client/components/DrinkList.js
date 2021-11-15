@@ -53,9 +53,8 @@ export class AllDrinks extends React.Component {
         <div className='drink-list'>
           {drinksToRender.map((item, index) => {
             return (
-              <Link to={`/drinks/${item.id}`}>
+              // <Link to={`/drinks/${item.id}`}>
                 <SingleDrink key={item.id} drink={item} />
-              </Link>
             );
           })}
         </div>
