@@ -557,4 +557,25 @@ button svg {
   /* width: 1040px; */
   justify-content: space-evenly;
   flex-wrap: wrap;
+/* Single Details CSS*/
+
+.detailsWrapper {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+
+.detailsButton {
+  width: 15%;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #b7990d;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #b7990d;
+  cursor: pointer;
+  font-weight: 100;
 }
