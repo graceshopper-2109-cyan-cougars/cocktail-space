@@ -22,3 +22,24 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+// Deleting One Drink By ID
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const drink = await Drink.findByPk(req.params.id)
+    await drink.destroy();
+    res.send(drink)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// Create New Drink Using Form Data
+router.post('/', async (req, res, next) => {
+  try {
+    res.status(201).json(await Drink.create(req.body))
+  } catch (err) {
+    next(err)
+  }
+})
