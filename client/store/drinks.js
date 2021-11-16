@@ -14,6 +14,19 @@ export const fetchDrinks = (action) => {
   }
 };
 
+export const createDrink = (action) => {
+  return {
+    type: CREATE_DRINK,
+    drinkFromForm: action.payload
+  }
+};
+
+export const deleteDrink = (action) => {
+  return {
+    type: DELETE_DRINK,
+  }
+}
+
 // Thunk Action
 export const setDrinks = () => {
   return async (dispatch, getState) => {
@@ -21,6 +34,13 @@ export const setDrinks = () => {
     dispatch(fetchDrinks({payload: data}))
   }
 };
+
+export const creatingDrink = (drinkFromForm) => {
+  return async (dispatch) => {
+    const { data } = await axios.post('/api/robots', drinkFromForm)
+    dispatch(createDrink({payload: data}))
+  }
+}
 
 // Reducer
 export default function drinksReducer(state=[], action){
