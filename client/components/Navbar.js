@@ -21,7 +21,7 @@ const Navbar = ({ isLoggedIn, username, handleClick, cart }) => {
       </Link>
 
       <div className='header__nav'>
-        <Link to={!isLoggedIn && '/login'} style={{ textDecoration: 'none' }}>
+        <Link to={'/login'} style={{ textDecoration: 'none' }}>
           <div className='header__option' onClick={handleClick}>
             <span className='header__optionLineOne'>
               Hello, {!username ? 'Guest' : username}

@@ -1,8 +1,7 @@
-  import React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
 import { Link, useHistory } from 'react-router-dom';
-
 
 const Login = (props) => {
   const { name, displayName, handleSubmit, error } = props;
@@ -21,11 +20,7 @@ const Login = (props) => {
           <h5>Password</h5>
           <input type='password' name='password' />
 
-          <button
-            type='submit'
-            // onClick={displayName}
-            className='login__signInButton'
-          >
+          <button type='submit' className='login__signInButton'>
             Sign In
           </button>
           {error && error.response && <div> {error.response.data} </div>}
