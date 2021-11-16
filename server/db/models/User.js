@@ -88,7 +88,3 @@ const hashPassword = async (user) => {
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
-User.afterCreate(async (user) => {
-  const cart = await Order.create({ active: true });
-  await cart.setUser(user);
-});

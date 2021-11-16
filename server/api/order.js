@@ -7,13 +7,12 @@ const {
 router.get('/', async (req, res, next) => {
   try {
     const { id } = await User.findByToken(req.headers.token);
-    const cart = await Order.findOne({ where: { userId: id, active: true } });
+    let cart = await Order.findOne({ where: { userId: id, active: true } });
     if (!cart) {
-      return next();
-    } else {
-      const drinks = await CartItem.findAll({ where: { orderId: cart.id } });
-      res.send(drinks);
+      cart = await Order.create({ userId: id });
     }
+    const drinks = await CartItem.findAll({ where: { orderId: cart.id } });
+    res.send(drinks);
   } catch (e) {
     next(e);
   }

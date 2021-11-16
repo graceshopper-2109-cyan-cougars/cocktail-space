@@ -24,9 +24,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const loadInitialData = async () => {
+    async function loadInitialData() {
       await dispatch(me());
-    };
+    }
     loadInitialData();
   }, []);
 

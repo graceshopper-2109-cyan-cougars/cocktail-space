@@ -19,9 +19,7 @@ export const fetchCart = (loggedIn) => {
       let cart = [];
       if (loggedIn) {
         const token = localStorage.getItem('token');
-        cart = await (
-          await Axios.get('/api/order/', { headers: { token } })
-        ).data;
+        cart = (await Axios.get('/api/order/', { headers: { token } })).data;
       } else {
         localStorage.getItem('cart')
           ? (cart = JSON.parse(localStorage.getItem('cart')))
@@ -69,47 +67,31 @@ export const deleteItem = (loggedIn, cartItem) => {
   };
 };
 
-export const addItem = (drinkId, quantity) => {
+export const addItem = (drink, quantity) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      if (!localStorage.getItem('cart')) {
-        localStorage.setItem('cart', []);
-      } else {
-        let cart = JSON.parse(localStorage.getItem('cart'));
-        cart.push({ drinkId, quantity });
-        localStorage.setItem('cart', cart);
+
+      if (!token) {
+        if (!localStorage.getItem('cart')) {
+          localStorage.setItem('cart', []);
+        } else {
+          localStorage.cart.push(
+            JSON.stringify({ drinkId: drink.id, quantity })
+          );
+        }
+        return;
       }
-      // const created = await Axios.post(
-      //   '/api/order/',
-      //   { drinkId: drinkId, quantity },
-      //   { headers: { token } }
-      // ).data;
-      // dispatch(_addItem(created));
 
-      // let itemToAdd;
-      // let cart = JSON.parse(localStorage.getItem('cart'));
-      // let itemCheck;
-      // cart.forEach((item) => {
-      //   if (item.id == drink.id) {
-      //     item.quantity++;
-      //     itemCheck = true;
-      //   }
-      // });
+      const itemToAdd = (
+        await Axios.post(
+          '/api/order/',
+          { drinkId: drink.id, quantity },
+          { headers: { token } }
+        )
+      ).data;
 
-      // if (loggedIn && !itemCheck) {
-      //   const token = localStorage.getItem('token');
-      //   itemToAdd = (
-      //     await Axios.post(
-      //       '/api/order/',
-      //       { drinkId: drink.id, quantity: 1 },
-      //       { headers: { token } }
-      //     )
-      //   ).data;
-      //   dispatch(_addItem(itemToAdd));
-      // } else if (loggedIn && itemCheck) {
-      //   const token = localStorage.getItem('token');
-      //   await Axios.put(`/api/${}`)
+      dispatch(_addItem(itemToAdd));
     } catch (e) {
       return 'something went wrong';
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartEntry from './CartEntry';
+import { formatPrice } from '../../utility.js';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -33,7 +34,9 @@ class ShoppingCart extends React.Component {
             <div className='subtotal-text'>Subtotal: ${subtotal}</div>
             <div className='shipping-text'>Shipping: $9.99</div>
             <hr />
-            <div className='subtotal-text'>Total: ${subtotal + 9.99}</div>
+            <div className='subtotal-text'>
+              Total: {formatPrice((subtotal + 9.99) * 100)}
+            </div>
           </div>
         )}
         <div className='cart-options'>

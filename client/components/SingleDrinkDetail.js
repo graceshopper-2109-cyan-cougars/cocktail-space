@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchingSingleDrink } from '../store/singledrinks';
-import { addItem } from '../store/cart.js';
+import { addItem, updateQty } from '../store/cart.js';
 
 export class SingleDrinkDetail extends React.Component {
   constructor() {
@@ -16,7 +16,18 @@ export class SingleDrinkDetail extends React.Component {
   }
 
   handleClick() {
-    this.props.addItem(this.props.loggedIn, this.props.drinkFromRedux.id, 1);
+    const alreadyExists = this.props.cart.find(
+      (item) => item.drinkId == this.props.drinkFromRedux.id
+    );
+    if (alreadyExists) {
+      this.props.updateQty(
+        this.props.loggedIn,
+        alreadyExists,
+        alreadyExists.quantity + 1
+      );
+    } else {
+      this.props.addToCart(this.props.drinkFromRedux, 1);
+    }
   }
 
   render() {
@@ -54,8 +65,11 @@ const mapDispatch = (dispatch) => {
     getSingleDrink: (id) => {
       dispatch(fetchingSingleDrink(id));
     },
-    addItem: (drink) => {
-      dispatch(addItem(drink));
+    addToCart: (drink, quantity) => {
+      dispatch(addItem(drink, quantity));
+    },
+    updateQty: (loggedIn, cartItem, quantity) => {
+      dispatch(updateQty(loggedIn, cartItem, quantity));
     },
   };
 };

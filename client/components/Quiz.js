@@ -123,16 +123,19 @@ export default function Quiz() {
               </div>
             </div>
             <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button
-                  className='quizButton'
-                  onClick={() =>
-                    handleAnswerOptionClick(answerOption.isCorrect)
-                  }
-                >
-                  {answerOption.answerText}
-                </button>
-              ))}
+              {questions[currentQuestion].answerOptions.map(
+                (answerOption, index) => (
+                  <button
+                    className='quizButton'
+                    key={index}
+                    onClick={() =>
+                      handleAnswerOptionClick(answerOption.isCorrect)
+                    }
+                  >
+                    {answerOption.answerText}
+                  </button>
+                )
+              )}
             </div>
           </>
         )}
