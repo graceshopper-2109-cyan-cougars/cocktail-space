@@ -8,10 +8,12 @@ const Navbar = ({ isLoggedIn, username, handleClick, cart }) => {
   if (isLoggedIn && cart) {
     cartSize = cart.reduce((accum, item) => accum + item.quantity, 0);
   } else if (!isLoggedIn && JSON.parse(localStorage.getItem('cart'))) {
-    JSON.parse(localStorage.getItem('cart')).reduce(
-      (accum, item) => accum + item.quantity,
-      0
-    );
+    // JSON.parse(localStorage.getItem('cart')).reduce(
+    //   (accum, item) => accum + item.quantity,
+    //   0
+    // );
+    let localCart = JSON.parse(localStorage.getItem('cart'));
+    localCart.forEach((item) => (cartSize += item.quantity));
   }
   return (
     //need cart state from redux to add items to cart icon

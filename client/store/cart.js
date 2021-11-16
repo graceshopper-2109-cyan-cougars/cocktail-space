@@ -44,9 +44,13 @@ export const updateQty = (loggedIn, cartItem, qty) => {
         ).data;
         dispatch(_updateQty(updatedCartItem));
       } else {
-        // const guestCart = JSON.parse(localStorage.getItem('cart'));
-        // guestCart.push(cartItem);
-        // localStorage.setItem('cart', guestCart);
+        let guestCart = JSON.parse(localStorage.getItem('cart'));
+        let itemToUpdate = guestCart.find(
+          (item) => item.drinkId == cartItem.drinkId
+        );
+        itemToUpdate.quantity = qty;
+        localStorage.setItem('cart', JSON.stringify(guestCart));
+        dispatch(_updateQty(itemToUpdate));
       }
     } catch (e) {
       return 'something went wrong';
@@ -61,8 +65,17 @@ export const deleteItem = (loggedIn, cartItem) => {
         await Axios.delete(`/api/order/${cartItem.id}`);
         dispatch(_deleteItem(cartItem));
       } else {
-        // UNFINISHED FINISHED THIS ONCE ADD TO CART BUTTON IS ADDED
-        // const guestCart = JSON.parse(localStorage.getItem('cart'));
+        let guestCart = JSON.parse(localStorage.getItem('cart'));
+        let itemToRemove;
+        guestCart = guestCart.filter((item) => {
+          if (item.drinkId == cartItem.drinkId) {
+            itemToRemove = item;
+          }
+          return item.drinkId != cartItem.drinkId;
+        });
+        localStorage.setItem('cart', JSON.stringify(guestCart));
+
+        dispatch(_deleteItem(itemToRemove));
       }
     } catch (e) {
       return 'something went wrong';
@@ -74,19 +87,25 @@ export const addItem = (drink, quantity) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
+      let itemToAdd;
 
       if (!token) {
         if (!localStorage.getItem('cart')) {
           localStorage.setItem('cart', []);
         } else {
-          localStorage.cart.push(
-            JSON.stringify({ drinkId: drink.id, quantity })
-          );
+          let guestCart = JSON.parse(localStorage.getItem('cart'));
+          itemToAdd = {
+            id: guestCart.length + 1,
+            drinkId: drink.id,
+            quantity,
+          };
+          guestCart.push(itemToAdd);
+          localStorage.setItem('cart', JSON.stringify(guestCart));
         }
-        return;
+        return dispatch(_addItem(itemToAdd));
       }
 
-      const itemToAdd = (
+      itemToAdd = (
         await Axios.post(
           '/api/order/',
           { drinkId: drink.id, quantity },
@@ -105,9 +124,13 @@ export const checkout = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      const cart = (await Axios.post('/api/order/checkout', { token })).data;
-      history.push('/checkout');
-      dispatch(_checkout(cart));
+      if (!token) {
+        const cart = (
+          await Axios.post('/api/order/checkout', null, { headers: { token } })
+        ).data;
+        history.push('/checkout');
+        dispatch(_checkout(cart));
+      }
     } catch (e) {
       return 'something went wrong';
     }

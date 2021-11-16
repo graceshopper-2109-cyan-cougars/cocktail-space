@@ -17,6 +17,18 @@ CartItem.belongsTo(Order);
 Drink.hasMany(CartItem);
 CartItem.belongsTo(Drink);
 
+/*
+  orderId  drinkId  quantity
+  1        1        1
+  1        2        2
+  1        3        2
+
+
+id  orderId  drinkId
+1   1        1
+2   1        2
+3   1        1
+*/
 module.exports = {
   db,
   models: {

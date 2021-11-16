@@ -30,10 +30,16 @@ class ShoppingCart extends React.Component {
           {cart.length == 0 ? (
             <div> Your cart is empty!</div>
           ) : (
-            cart.map((item) => {
+            cart.map((item, index) => {
               const drink = drinks[item.drinkId - 1];
               subtotal += drinks[item.drinkId - 1].price * item.quantity;
-              return <CartEntry key={item.id} drink={drink} cartItem={item} />;
+              return (
+                <CartEntry
+                  key={item.id || index}
+                  drink={drink}
+                  cartItem={item}
+                />
+              );
             })
           )}
         </div>

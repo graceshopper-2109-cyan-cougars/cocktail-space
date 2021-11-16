@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
 
 router.post('/checkout', async (req, res, next) => {
   try {
-    const { id } = await User.findByToken(req.body.token);
+    const { id } = await User.findByToken(req.headers.token);
     const cart = await Order.findOne({ where: { userId: id, active: true } });
     cart.update({ active: false });
     res.send([]);
