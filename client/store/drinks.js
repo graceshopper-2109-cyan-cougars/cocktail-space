@@ -37,7 +37,7 @@ export const setDrinks = () => {
 
 export const creatingDrink = (drinkFromForm) => {
   return async (dispatch) => {
-    const { data } = await axios.post('/api/robots', drinkFromForm)
+    const { data } = await axios.post('/api/drinks', drinkFromForm)
     dispatch(createDrink({payload: data}))
   }
 }
