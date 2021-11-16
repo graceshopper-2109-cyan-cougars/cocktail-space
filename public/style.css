@@ -360,14 +360,48 @@ hr {
 }
 
 .cart-options .option {
-  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
-
-  height: 50px;
-  padding-top: 25px;
-  width: 210px;
-  border: none;
-  border-radius: 6px;
+  text-decoration: none;
+  width: 250px;
+  font-size: 15px;
+  color: #ffffff;
   background-color: #b7990d;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #b7990d;
+  cursor: pointer;
+  font-weight: 100;
+  margin: 40px;
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+}
+
+.option:hover {
+  background-color: #ebae06;
+}
+
+.checkout-component {
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-wrapper {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid;
+  width: 600px;
+  justify-content: center;
+  box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
+}
+
+.checkout-wrapper div {
+  font-size: 30px;
+  margin: 50px;
 }
 
 /* QUIZ COMPONENT */

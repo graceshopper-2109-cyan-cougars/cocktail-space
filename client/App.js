@@ -4,6 +4,7 @@ import Popup from './components/Popup';
 import Navbar from './components/Navbar';
 import Routes from './Routes';
 import { fetchCart } from './store/cart.js';
+import { me } from './store/auth.js';
 
 const App = () => {
   const [timedPopup, setTimedPopup] = useState(false);
@@ -12,7 +13,7 @@ const App = () => {
   const loggedIn = useSelector((state) => {
     return !!state.auth.id;
   });
-  const me = useSelector((state) => {
+  const currentUser = useSelector((state) => {
     return state.auth;
   });
 
@@ -23,8 +24,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    async function loadInitialData() {
+      await dispatch(me());
+    }
+    loadInitialData();
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchCart(loggedIn));
-  }, [me]);
+  }, [currentUser]);
 
   return (
     <div>
