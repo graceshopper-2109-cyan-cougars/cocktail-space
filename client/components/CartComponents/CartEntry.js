@@ -47,7 +47,7 @@ class CartEntry extends React.Component {
     const drink = this.props.drink;
     return (
       <div className='cart-entry-container'>
-        <img src={drink.imageUrl} width='100' height='100' />
+        <img src={drink.image} width='100' height='100' />
         <div> {drink.name}</div>
         <div className='cart-entry-quantity'>
           <div className='qty'>Qty: {this.state.quantity}</div>

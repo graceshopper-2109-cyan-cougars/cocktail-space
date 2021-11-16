@@ -1,16 +1,19 @@
 import Axios from 'axios';
+import history from '../history';
 
 // action types
 const GET_CART = 'GET_CART';
 const UPDATE_QTY = 'UPDATE_QTY';
 const DELETE_ITEM = 'DELETE_ITEM';
 const ADD_ITEM = 'ADD_ITEM';
+const CHECKOUT = 'CHECKOUT';
 
 // action creator
 const getCart = (cart) => ({ type: GET_CART, cart });
 const _updateQty = (cartItem) => ({ type: UPDATE_QTY, cartItem });
 const _deleteItem = (cartItem) => ({ type: DELETE_ITEM, cartItem });
 const _addItem = (itemToAdd) => ({ type: ADD_ITEM, itemToAdd });
+const _checkout = (cart) => ({ type: CHECKOUT, cart });
 
 //thunk creator
 export const fetchCart = (loggedIn) => {
@@ -98,6 +101,19 @@ export const addItem = (drink, quantity) => {
   };
 };
 
+export const checkout = () => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      const cart = (await Axios.post('/api/order/checkout', { token })).data;
+      history.push('/checkout');
+      dispatch(_checkout(cart));
+    } catch (e) {
+      return 'something went wrong';
+    }
+  };
+};
+
 //reducer
 export default function (state = [], action) {
   switch (action.type) {
@@ -111,6 +127,8 @@ export default function (state = [], action) {
       return state.filter((item) => item.id != action.cartItem.id);
     case ADD_ITEM:
       return [...state, action.itemToAdd];
+    case CHECKOUT:
+      return action.cart;
     default:
       return state;
   }

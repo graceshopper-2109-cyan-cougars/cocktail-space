@@ -33,6 +33,17 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.post('/checkout', async (req, res, next) => {
+  try {
+    const { id } = await User.findByToken(req.body.token);
+    const cart = await Order.findOne({ where: { userId: id, active: true } });
+    cart.update({ active: false });
+    res.send([]);
+  } catch (e) {
+    next(e);
+  }
+});
+
 // find the cartItem to update with the passed in orderId, update accordingly
 router.put('/:id', async (req, res, next) => {
   try {

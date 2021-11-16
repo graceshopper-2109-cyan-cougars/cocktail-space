@@ -3,10 +3,20 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartEntry from './CartEntry';
 import { formatPrice } from '../../utility.js';
+import { checkout } from '../../store/cart.js';
 
 class ShoppingCart extends React.Component {
   constructor() {
     super();
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(evt) {
+    evt.preventDefault();
+    if (this.props.cart.length > 0) {
+      this.props.checkout();
+    }
   }
 
   render() {
@@ -31,7 +41,9 @@ class ShoppingCart extends React.Component {
           <div></div>
         ) : (
           <div className='order-price-details'>
-            <div className='subtotal-text'>Subtotal: ${subtotal}</div>
+            <div className='subtotal-text'>
+              Subtotal: {formatPrice(subtotal * 100)}
+            </div>
             <div className='shipping-text'>Shipping: $9.99</div>
             <hr />
             <div className='subtotal-text'>
@@ -40,27 +52,13 @@ class ShoppingCart extends React.Component {
           </div>
         )}
         <div className='cart-options'>
-          <div className='option'>
-            <Link
-              to='/home'
-              style={{
-                textDecoration: 'none',
-                color: 'white',
-                fontSize: '16px',
-              }}
-            >
+          <div>
+            <Link to='/home' className='option'>
               Continue Shopping
             </Link>
           </div>
-          <div className='option'>
-            <Link
-              to='/checkout'
-              style={{
-                textDecoration: 'none',
-                color: 'white',
-                fontSize: '16px',
-              }}
-            >
+          <div>
+            <Link to='/checkout' className='option' onClick={this.handleClick}>
               Checkout
             </Link>
           </div>
@@ -77,4 +75,10 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(ShoppingCart);
+const mapDispatch = (dispatch) => {
+  return {
+    checkout: () => dispatch(checkout()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(ShoppingCart);
