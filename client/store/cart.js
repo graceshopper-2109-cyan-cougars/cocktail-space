@@ -130,6 +130,7 @@ export const checkout = () => {
         ).data;
         history.push('/checkout');
         dispatch(_checkout(cart));
+      } else {
       }
     } catch (e) {
       return 'something went wrong';

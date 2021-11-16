@@ -8,6 +8,7 @@ import { me } from './store/auth.js';
 
 const App = () => {
   const [timedPopup, setTimedPopup] = useState(false);
+
   const dispatch = useDispatch();
 
   const loggedIn = useSelector((state) => {
@@ -18,9 +19,15 @@ const App = () => {
   });
 
   useEffect(() => {
-    setTimeout(() => {
-      setTimedPopup(true);
-    }, 600);
+    const popupModalValue = localStorage.getItem('popupModal');
+    if (!popupModalValue) {
+      const timer = setTimeout(() => {
+        setTimedPopup(true);
+        localStorage.setItem('popupModal', '1');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
