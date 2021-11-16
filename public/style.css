@@ -272,6 +272,7 @@ small {
 #cart-title-text {
   font-size: 35px;
   margin-bottom: 20px;
+  color: white;
 }
 
 .order-price-details {
@@ -286,10 +287,12 @@ hr {
 
 .shipping-text {
   margin-bottom: 27px;
+  color: white;
 }
 
 .subtotal-text {
   margin-top: 5px;
+  color: white;
 }
 
 /* CART ENTRY COMPONENT */
@@ -415,14 +418,15 @@ hr {
 
 .quiz {
   background-color: white;
-  width: 500px;
-  min-height: 200px;
+  width: 700px;
+  min-height: 300px;
   height: min-content;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
   display: flex;
   justify-content: space-evenly;
+  margin-top: -83px;
 }
 
 .personaScore-section {
@@ -475,7 +479,7 @@ hr {
   text-align: center;
 }
 .answer-section {
-  width: 64%;
+  width: 59%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -488,7 +492,7 @@ hr {
   background-color: #b7990d;
   border-radius: 15px;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   border: 2px solid #b7990d;
@@ -601,7 +605,7 @@ label {
   font-family: 'Nunito';
   letter-spacing: 2px;
   margin: 47px;
-  color: black;
+  color: white;
 }
 
 .select {
