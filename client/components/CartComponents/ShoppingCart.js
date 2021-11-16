@@ -43,7 +43,7 @@ class ShoppingCart extends React.Component {
               style={{
                 textDecoration: 'none',
                 color: 'white',
-                fontSize: '20px',
+                fontSize: '16px',
               }}
             >
               Continue Shopping
@@ -55,7 +55,7 @@ class ShoppingCart extends React.Component {
               style={{
                 textDecoration: 'none',
                 color: 'white',
-                fontSize: '20px',
+                fontSize: '16px',
               }}
             >
               Checkout

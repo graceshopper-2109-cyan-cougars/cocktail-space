@@ -24,8 +24,10 @@ router.post('/', async (req, res, next) => {
   try {
     const { id } = await User.findByToken(req.headers.token);
     let cart = await Order.findOne({ where: { userId: id, active: true } });
-    const newItem = await CartItem.create({ ...req.body });
-    await newItem.setOrder(cart.id);
+    if (!cart) {
+      cart = await Order.create({ userId: id });
+    }
+    const newItem = await CartItem.create({ ...req.body, orderId: cart.id });
     res.send(newItem);
   } catch (e) {
     next(e);

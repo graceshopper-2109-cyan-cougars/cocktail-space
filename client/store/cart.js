@@ -43,9 +43,9 @@ export const updateQty = (loggedIn, cartItem, qty) => {
         ).data;
         dispatch(_updateQty(updatedCartItem));
       } else {
-        const guestCart = JSON.parse(localStorage.getItem('cart'));
-        guestCart.push(cartItem);
-        localStorage.setItem('cart', guestCart);
+        // const guestCart = JSON.parse(localStorage.getItem('cart'));
+        // guestCart.push(cartItem);
+        // localStorage.setItem('cart', guestCart);
       }
     } catch (e) {
       return 'something went wrong';
@@ -69,20 +69,47 @@ export const deleteItem = (loggedIn, cartItem) => {
   };
 };
 
-export const addItem = (loggedIn, cartItem) => {
+export const addItem = (drinkId, quantity) => {
   return async (dispatch) => {
     try {
-      if (loggedIn) {
-        const token = localStorage.getItem('token');
-        const itemToAdd = await (
-          await Axios.post(
-            '/api/order/',
-            { quantity: cartItem.quantity },
-            { headers: { token } }
-          )
-        ).data;
-        dispatch(_addItem(itemToAdd));
+      const token = localStorage.getItem('token');
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', []);
+      } else {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart.push({ drinkId, quantity });
+        localStorage.setItem('cart', cart);
       }
+      // const created = await Axios.post(
+      //   '/api/order/',
+      //   { drinkId: drinkId, quantity },
+      //   { headers: { token } }
+      // ).data;
+      // dispatch(_addItem(created));
+
+      // let itemToAdd;
+      // let cart = JSON.parse(localStorage.getItem('cart'));
+      // let itemCheck;
+      // cart.forEach((item) => {
+      //   if (item.id == drink.id) {
+      //     item.quantity++;
+      //     itemCheck = true;
+      //   }
+      // });
+
+      // if (loggedIn && !itemCheck) {
+      //   const token = localStorage.getItem('token');
+      //   itemToAdd = (
+      //     await Axios.post(
+      //       '/api/order/',
+      //       { drinkId: drink.id, quantity: 1 },
+      //       { headers: { token } }
+      //     )
+      //   ).data;
+      //   dispatch(_addItem(itemToAdd));
+      // } else if (loggedIn && itemCheck) {
+      //   const token = localStorage.getItem('token');
+      //   await Axios.put(`/api/${}`)
     } catch (e) {
       return 'something went wrong';
     }

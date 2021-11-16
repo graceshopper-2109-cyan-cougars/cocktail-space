@@ -16,18 +16,17 @@ export class SingleDrinkDetail extends React.Component {
   }
 
   handleClick() {
-    this.props.addItem(this.props.singleDrink);
+    this.props.addItem(this.props.loggedIn, this.props.drinkFromRedux.id, 1);
   }
 
   render() {
-    console.log(this.props.singleDrink);
     const currentDrink = this.props.drinkFromRedux;
     return (
-      <div>
-        <img className='detailsImage' src={currentDrink.image}></img>
+      <div className='singleDrinkContainer'>
         <div className='detailsWrapper'>
+          <img className='detailsImage' src={currentDrink.image}></img>
           <button className='detailsButton' onClick={this.handleClick}>
-            Add to cart here
+            Add to cart
           </button>
 
           <p>Drink: {currentDrink.name}</p>
@@ -45,6 +44,8 @@ export class SingleDrinkDetail extends React.Component {
 const mapState = (state) => {
   return {
     drinkFromRedux: state.singleDrink,
+    cart: state.cart,
+    loggedIn: !!state.auth.id,
   };
 };
 
@@ -53,8 +54,8 @@ const mapDispatch = (dispatch) => {
     getSingleDrink: (id) => {
       dispatch(fetchingSingleDrink(id));
     },
-    addItem: (cartItem) => {
-      dispatch(addItem(cartItem));
+    addItem: (drink) => {
+      dispatch(addItem(drink));
     },
   };
 };

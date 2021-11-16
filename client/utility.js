@@ -79,5 +79,5 @@ export function getFunName() {
     'splash',
   ];
 
-  return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
+  return `${rando(adjectives)} ${rando(adjectives)} ${rando(nouns)}`;
 }
