@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartEntry from './CartEntry';
 import { formatPrice } from '../../utility.js';
-import { checkout } from '../../store/cart.js';
+import { checkout, fetchCart } from '../../store/cart.js';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -12,10 +12,25 @@ class ShoppingCart extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(evt) {
-    evt.preventDefault();
+  async handleClick(evt) {
+    if (!this.props.loggedIn) {
+      evt.preventDefault();
+      window.alert('Please sign in to a Cocktail Space account');
+      return;
+    }
     if (this.props.cart.length > 0) {
-      this.props.checkout();
+      let outOfStockItems = await this.props.checkout(this.props.loggedIn);
+      if (outOfStockItems) {
+        let alertString = outOfStockItems.reduce((accum, item) => {
+          return accum + ' ' + item.name;
+        }, '');
+        outOfStockItems.length == 1
+          ? window.alert("We don't have enough" + alertString + ' :(')
+          : window.alert("We don't have enough" + alertString + ' :(');
+      }
+    } else {
+      evt.preventDefault();
+      window.alert('Your cart is empty!');
     }
   }
 
@@ -30,10 +45,16 @@ class ShoppingCart extends React.Component {
           {cart.length == 0 ? (
             <div> Your cart is empty!</div>
           ) : (
-            cart.map((item) => {
+            cart.map((item, index) => {
               const drink = drinks[item.drinkId - 1];
               subtotal += drinks[item.drinkId - 1].price * item.quantity;
-              return <CartEntry key={item.id} drink={drink} cartItem={item} />;
+              return (
+                <CartEntry
+                  key={item.id || index}
+                  drink={drink}
+                  cartItem={item}
+                />
+              );
             })
           )}
         </div>
@@ -58,7 +79,11 @@ class ShoppingCart extends React.Component {
             </Link>
           </div>
           <div>
-            <Link to='/checkout' className='option' onClick={this.handleClick}>
+            <Link
+              to={`/checkout/${cart[0] ? cart[0].orderId : 0}`}
+              className='option'
+              onClick={this.handleClick}
+            >
               Checkout
             </Link>
           </div>
@@ -72,12 +97,14 @@ const mapState = (state) => {
   return {
     cart: state.cart,
     drinks: state.drinks,
+    loggedIn: !!state.auth.id,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    checkout: () => dispatch(checkout()),
+    checkout: (loggedIn) => dispatch(checkout(loggedIn)),
+    fetchCart: (loggedIn) => dispatch(fetchCart(loggedIn)),
   };
 };
 
