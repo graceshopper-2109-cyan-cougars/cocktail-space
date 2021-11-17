@@ -38,7 +38,6 @@ export class SingleDrinkDetail extends React.Component {
       <div className='singleDrinkContainer'>
         <div className='detailsWrapper'>
           <img className='detailsImage' src={`/${currentDrink.image}`}></img>
-
           <p className='SingleDrink_Name'>{currentDrink.name}</p>
           <div className='SingleDrink_Details'>
             <p>{currentDrink.baseLiquor}</p>
