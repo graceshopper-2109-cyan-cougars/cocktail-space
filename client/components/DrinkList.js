@@ -8,7 +8,7 @@ export class AllDrinks extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: '',
+      value: 'All',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,14 +25,8 @@ export class AllDrinks extends React.Component {
     let drinksToRender = [];
     if (this.state.value === 'All') {
       drinksToRender = drinks;
-    } else if (this.state.value === 'Bourbon') {
-      drinksToRender = drinks.filter((drink) => drink.baseLiquor === 'Bourbon');
-    } else if (this.state.value === 'Tequila') {
-      drinksToRender = drinks.filter((drink) => drink.baseLiquor === 'Tequila');
-    } else if (this.state.value === 'Vodka') {
-      drinksToRender = drinks.filter((drink) => drink.baseLiquor === 'Vodka');
-    } else if (this.state.value === 'Rum') {
-      drinksToRender = drinks.filter((drink) => drink.baseLiquor === 'Rum');
+    } else{
+      drinksToRender = drinks.filter((drink) => drink.baseLiquor === this.state.value);
     }
 
     return (
@@ -45,7 +39,6 @@ export class AllDrinks extends React.Component {
               value={this.state.value}
               onChange={this.handleChange}
             >
-              <option value=''>-</option>
               <option value='All'>All</option>
               <option value='Bourbon'>Bourbon</option>
               <option value='Tequila'>Tequila</option>
