@@ -7,6 +7,7 @@ const UPDATE_QTY = 'UPDATE_QTY';
 const DELETE_ITEM = 'DELETE_ITEM';
 const ADD_ITEM = 'ADD_ITEM';
 const CHECKOUT = 'CHECKOUT';
+const MERGE_CARTS = 'MERGE_CARTS';
 
 // action creator
 const getCart = (cart) => ({ type: GET_CART, cart });
@@ -14,6 +15,7 @@ const _updateQty = (cartItem) => ({ type: UPDATE_QTY, cartItem });
 const _deleteItem = (cartItem) => ({ type: DELETE_ITEM, cartItem });
 const _addItem = (itemToAdd) => ({ type: ADD_ITEM, itemToAdd });
 const _checkout = (cart) => ({ type: CHECKOUT, cart });
+export const mergeCarts = (guestCart) => ({ type: MERGE_CARTS, guestCart });
 
 //thunk creator
 export const fetchCart = (loggedIn) => {
@@ -120,17 +122,24 @@ export const addItem = (drink, quantity) => {
   };
 };
 
-export const checkout = () => {
+export const checkout = (loggedIn) => {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        const cart = (
+      let cart;
+      if (loggedIn) {
+        const token = localStorage.getItem('token');
+        cart = (
           await Axios.post('/api/order/checkout', null, { headers: { token } })
         ).data;
-        history.push('/checkout');
+      } else {
+        cart = Axios.post('/api/order/checkout', null, {
+          headers: { token: 'guest' },
+        });
+      }
+      if (cart.length == 0) {
         dispatch(_checkout(cart));
       } else {
+        return cart;
       }
     } catch (e) {
       return 'something went wrong';
@@ -153,6 +162,13 @@ export default function (state = [], action) {
       return [...state, action.itemToAdd];
     case CHECKOUT:
       return action.cart;
+
+    // case MERGE_CARTS:
+    //     1.loop through the guestCart by item
+    //     2. if the item.drinkId == state[index].drinkId, change state[index].quantity += item.quantity and set guestcart quantity to 0
+
+    //  action.guestCart.forEach((item) => {});
+
     default:
       return state;
   }

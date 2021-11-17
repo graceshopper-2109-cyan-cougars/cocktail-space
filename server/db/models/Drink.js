@@ -1,8 +1,8 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const axios = require("axios");
+const Sequelize = require('sequelize');
+const db = require('../db');
+const axios = require('axios');
 
-const Drink = db.define("drink", {
+const Drink = db.define('drink', {
   name: {
     type: Sequelize.STRING,
     unique: true,
@@ -28,6 +28,9 @@ const Drink = db.define("drink", {
   stock: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    // validate: {
+    //   min: 0,
+    // },
   },
   description: {
     type: Sequelize.TEXT,
