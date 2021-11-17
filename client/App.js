@@ -12,9 +12,6 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const loggedIn = useSelector((state) => {
-    return !!state.auth.id;
-  });
   const currentUser = useSelector((state) => {
     return state.auth;
   });
@@ -32,13 +29,14 @@ const App = () => {
 
   useEffect(() => {
     async function loadInitialData() {
+      await dispatch(setDrinks());
       await dispatch(me());
     }
     loadInitialData();
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCart(loggedIn));
+    dispatch(fetchCart(!!currentUser.id));
   }, [currentUser]);
 
   return (

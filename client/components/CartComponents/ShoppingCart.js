@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CartEntry from './CartEntry';
 import { formatPrice } from '../../utility.js';
 import { checkout, fetchCart } from '../../store/cart.js';
+import history from '../../history.js';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -13,23 +14,22 @@ class ShoppingCart extends React.Component {
   }
 
   async handleClick(evt) {
-    if (!this.props.loggedIn) {
-      evt.preventDefault();
-      window.alert('Please sign in to a Cocktail Space account');
-      return;
-    }
     if (this.props.cart.length > 0) {
-      let outOfStockItems = await this.props.checkout(this.props.loggedIn);
-      if (outOfStockItems) {
+      let orderId = this.props.cart[0].orderId;
+      let responseFromExpress = await this.props.checkout(this.props.loggedIn);
+      let outOfStockItems = responseFromExpress.cannotBuy;
+      if (outOfStockItems.length > 0) {
         let alertString = outOfStockItems.reduce((accum, item) => {
           return accum + ' ' + item.name;
         }, '');
-        outOfStockItems.length == 1
-          ? window.alert("We don't have enough" + alertString + ' :(')
-          : window.alert("We don't have enough" + alertString + ' :(');
+        window.alert("We don't have enough" + alertString + ' :(');
+      } else {
+        const guestOrderId = responseFromExpress.orderId;
+        history.push(
+          `/checkout/${this.props.loggedIn ? orderId : guestOrderId}`
+        );
       }
     } else {
-      evt.preventDefault();
       window.alert('Your cart is empty!');
     }
   }
@@ -38,7 +38,7 @@ class ShoppingCart extends React.Component {
     const { cart, drinks } = this.props;
 
     let subtotal = 0;
-    return (
+    return drinks.length > 0 ? (
       <div className='shopping-cart-container'>
         <div id='cart-title-text'>Your Shopping Cart</div>
         <div className='cart-entry-list-container'>
@@ -62,13 +62,11 @@ class ShoppingCart extends React.Component {
           <div></div>
         ) : (
           <div className='order-price-details'>
-            <div className='subtotal-text'>
-              Subtotal: {formatPrice(subtotal * 100)}
-            </div>
+            <div className='subtotal-text'>Subtotal: ${subtotal / 100}</div>
             <div className='shipping-text'>Shipping: $9.99</div>
             <hr />
             <div className='subtotal-text'>
-              Total: {formatPrice((subtotal + 9.99) * 100)}
+              Total: ${(subtotal + 999) / 100}
             </div>
           </div>
         )}
@@ -79,16 +77,14 @@ class ShoppingCart extends React.Component {
             </Link>
           </div>
           <div>
-            <Link
-              to={`/checkout/${cart[0] ? cart[0].orderId : 0}`}
-              className='option'
-              onClick={this.handleClick}
-            >
+            <button className='option' onClick={this.handleClick}>
               Checkout
-            </Link>
+            </button>
           </div>
         </div>
       </div>
+    ) : (
+      <div>Loading...</div>
     );
   }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchingSingleDrink } from '../store/singledrinks';
 import { addItem, updateQty } from '../store/cart.js';
+import history from '../history';
+import { formatPrice } from '../utility';
 
 export class SingleDrinkDetail extends React.Component {
   constructor() {
@@ -35,17 +37,30 @@ export class SingleDrinkDetail extends React.Component {
     return (
       <div className='singleDrinkContainer'>
         <div className='detailsWrapper'>
-          <img className='detailsImage' src={currentDrink.image}></img>
-          <button className='detailsButton' onClick={this.handleClick}>
-            Add to cart
-          </button>
-
-          <p>Drink: {currentDrink.name}</p>
-          <p>Base: {currentDrink.baseLiquor}</p>
-          <p>Price: {currentDrink.price}</p>
-          <p>Alcohol Content: {currentDrink.alcoholContent}</p>
-          <p>Current Stock: {currentDrink.stock}</p>
-          <p>{currentDrink.description}</p>
+          <img className='detailsImage' src={`/${currentDrink.image}`}></img>
+          <p className='SingleDrink_Name'>{currentDrink.name}</p>
+          <div className='SingleDrink_Details'>
+            <p>{currentDrink.baseLiquor}</p>
+            <p>{formatPrice(currentDrink.price)}</p>
+            <p>Alcohol Content: {currentDrink.alcoholContent}</p>
+            <p>Current Stock: {currentDrink.stock}</p>
+          </div>
+          <div>
+            <p className='SingleDrink_FullDesc'>{currentDrink.description}</p>
+          </div>
+          <div className='buttonsWrapper'>
+            <button className='detailsButton' onClick={this.handleClick}>
+              Add to cart
+            </button>
+            <button
+              className='detailsButton'
+              onClick={() => {
+                history.push(`/home`);
+              }}
+            >
+              Return To Homepage
+            </button>
+          </div>
         </div>
       </div>
     );

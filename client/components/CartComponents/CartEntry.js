@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import auth from '../../store/auth.js';
 import { updateQty, deleteItem } from '../../store/cart.js';
+import { formatPrice } from '../../utility';
 
 class CartEntry extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class CartEntry extends React.Component {
             </button>
           </div>
         </div>
-        <div id='cart-entry-price'>${drink.price}</div>
+        <div id='cart-entry-price'>{formatPrice(drink.price)}</div>
         <button
           className='remove-from-cart-button'
           type='button'
