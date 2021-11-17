@@ -171,7 +171,6 @@ small {
   margin: 10px;
 }
 
-
 /* NavBar Component*/
 
 .header {
@@ -322,11 +321,10 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6px 14px;
-  border-radius: 6px;
+  /* padding: 0px 6px; */
+  border-radius: 3px;
   border: none;
-
-  background: #b7990d;
+  background: #121212;
   box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
@@ -334,6 +332,11 @@ hr {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-size: 10px;
+  /* padding: 3px; */
+  marign: -2px;
+  padding: 2px 4px 2px 5px;
+  margin-top: 4px;
 }
 
 .shopping-cart-container button:focus {
@@ -397,16 +400,17 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 6px;
   border: 2px solid;
-  width: 600px;
+  width: 540px;
   justify-content: center;
   box-shadow: 15px 10px 42px 0px rgb(0 0 0 / 75%);
 }
 
 .checkout-wrapper div {
-  font-size: 30px;
-  margin: 50px;
+  font-size: 13px;
+  margin: 1px;
+  padding: 10px;
 }
 
 /* QUIZ COMPONENT */
@@ -557,13 +561,16 @@ button svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   min-height: 250px;
 }
 
 .card-body button {
-  margin-top: auto;
+  margin-top: inherit;
+  height: 30px;
+  width: 139px;
+  border-radius: 11px;
 }
 
 .card-body h4 {
@@ -573,6 +580,7 @@ button svg {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+  font-size: 17px;
 }
 
 .tag {
@@ -585,13 +593,14 @@ button svg {
   text-transform: uppercase;
   cursor: pointer;
 }
-.tag-teal {
+.tag-black {
   background-color: #0b110b;
 }
 
 .card-body p {
   font-size: 13px;
-  margin: 0 0 40px !important;
+  margin: 0 0 37px !important;
+  text-align: center;
 }
 
 /* Form Drop Down List (Homepage)*/
@@ -628,35 +637,31 @@ label {
 /* Drink list */
 .drink-list {
   display: flex;
-  /* width: 1800px; */
   justify-content: space-evenly;
-  /* max-width: 1200px; */
-  /* flex-direction: row; */
-  /* flex: 0 0 33.3333333%; */
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   margin: 39px;
   padding: 20px;
 }
 
-/* Single Details CSS*/
+/* Single Drinks Details CSS*/
 
 .singleDrinkContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* max-height: 400px; */
 }
 
 .detailsWrapper {
   display: flex;
-  width: 500px;
+  width: 460px;
   color: black;
   text-align: center;
   line-height: 22px;
   letter-spacing: 1.5px;
-  margin: 106px 0px 107px 0px;
+  margin: 85px 0px 107px 0px;
   flex-direction: column;
   background-color: #ffffffcf;
   box-shadow: 6px 4px 15px black;
@@ -665,20 +670,20 @@ label {
 
 .detailsButton {
   width: 50%;
-  font-size: 15px;
+  font-size: 14px;
   color: #ffffff;
   background-color: #b7990d;
-  border-radius: 15px;
+  border-radius: 22px;
   display: flex;
-  padding: 10px;
+  padding: 17px;
   align-items: center;
   border: 2px solid #b7990d;
   cursor: pointer;
   font-weight: 100;
-  height: 34px;
+  height: 40px;
   align-content: center;
   justify-content: center;
-  margin: 20px 0px 11px 25%;
+  margin: 20px;
 }
 
 .singleDrinkDesc {
@@ -689,4 +694,64 @@ label {
 .detailsImage {
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
+}
+
+.SingleDrink_Name {
+  font-size: 27px;
+  margin: 25px;
+}
+
+.SingleDrink_Details {
+  font-size: 12px;
+}
+
+.SingleDrink_FullDesc {
+  font-size: 13px;
+  font-style: oblique;
+  text-align: center;
+  margin: 10px;
+}
+
+.buttonsWrapper {
+  margin: 2px;
+  display: flex;
+}
+
+.SingleDrink_Details > p {
+  font-size: 16px;
+  line-height: 29px;
+}
+
+/* Checkout*/
+.checkout-component {
+  display: flex;
+}
+
+.checkout-wrapper {
+  display: flex;
+}
+
+h2.order-confirmed {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.order-num {
+  font-size: 10px;
+}
+
+.checkout-button {
+  background-color: #a972df;
+  color: white;
+  width: 152px;
+  height: 28px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.checkout-img {
+  width: 252px;
+  height: 200px;
+  border: 1px solid white;
+  border-radius: 50%;
 }
