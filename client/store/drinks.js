@@ -10,7 +10,7 @@ export const fetchDrinks = (action) => {
 };
 
 export const setDrinks = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const { data } = await axios.get('/api/drinks');
     data.sort((a, b) => {
       let id1 = a.id,

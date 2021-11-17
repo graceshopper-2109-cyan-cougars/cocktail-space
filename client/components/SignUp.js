@@ -34,7 +34,7 @@ class SignUp extends React.Component{
     const { handleChange, handleSubmit } = this;
     return(
       <div className='login'>
-        <Link to='/'></Link>
+
         <div className='login__container'>
         <h1>Sign-Up</h1>
       <form onSubmit={handleSubmit}>

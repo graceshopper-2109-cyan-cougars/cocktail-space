@@ -10,7 +10,6 @@ const Login = (props) => {
 
   return (
     <div className='login'>
-      <Link to='/'></Link>
 
       <div className='login__container'>
         <h1>Sign-in</h1>

@@ -84,7 +84,7 @@ router.post('/checkout', async (req, res, next) => {
 });
 
 // find the cartItem to update with the passed in orderId, update accordingly
-router.put('/:id', async (req, res, next) => {
+router.put('/:id',  async (req, res, next) => {
   try {
     const itemToUpdate = await CartItem.findOne({
       where: { id: req.params.id },
