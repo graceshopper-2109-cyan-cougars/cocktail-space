@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 const router = require('express').Router()
 const { models: { Drink }} = require('../db')
 const { requireToken, isAdmin } = require('./gatekeeper')
 
 module.exports = router
 
-=======
-const router = require('express').Router();
-const {
-  models: { Drink },
-} = require('../db');
-module.exports = router;
->>>>>>> main
 
 //Fetching All Drinks in /api/drinks
 router.get('/', async (req, res, next) => {
@@ -31,7 +23,6 @@ router.get('/:id', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-<<<<<<< HEAD
 })
 
 // Deals with post request, only allow posting for login admins
@@ -54,6 +45,3 @@ router.delete('/:id',requireToken, isAdmin, async (req, res, next) => {
     next(error)
   }
 })
-=======
-});
->>>>>>> main
