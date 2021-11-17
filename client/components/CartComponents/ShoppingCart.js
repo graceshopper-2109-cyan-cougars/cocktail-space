@@ -62,14 +62,10 @@ class ShoppingCart extends React.Component {
           <div></div>
         ) : (
           <div className='order-price-details'>
-            <div className='subtotal-text'>
-              Subtotal: {formatPrice(subtotal * 100)}
-            </div>
+            <div className='subtotal-text'>Subtotal: {subtotal / 100}</div>
             <div className='shipping-text'>Shipping: $9.99</div>
             <hr />
-            <div className='subtotal-text'>
-              Total: {formatPrice((subtotal + 9.99) * 100)}
-            </div>
+            <div className='subtotal-text'>Total: {total / 100}</div>
           </div>
         )}
         <div className='cart-options'>

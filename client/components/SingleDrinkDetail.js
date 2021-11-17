@@ -42,7 +42,7 @@ export class SingleDrinkDetail extends React.Component {
 
           <p>Drink: {currentDrink.name}</p>
           <p>Base: {currentDrink.baseLiquor}</p>
-          <p>Price: {currentDrink.price}</p>
+          <p>Price: {currentDrink.price / 100}</p>
           <p>Alcohol Content: {currentDrink.alcoholContent}</p>
           <p>Current Stock: {currentDrink.stock}</p>
           <p>{currentDrink.description}</p>
