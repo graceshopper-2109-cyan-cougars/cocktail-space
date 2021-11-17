@@ -36,8 +36,21 @@ router.post('/', async (req, res, next) => {
 
 router.post('/checkout', async (req, res, next) => {
   try {
-    const { id } = await User.findByToken(req.headers.token);
-    const cart = await Order.findOne({ where: { userId: id, active: true } });
+    let cart;
+    if (req.headers.token == 'guest') {
+      cart = await Order.create({ userId: null });
+      const guestCart = req.body.cart;
+      for (const item of guestCart) {
+        await CartItem.create({
+          orderId: cart.id,
+          drinkId: item.drinkId,
+          quantity: item.quantity,
+        });
+      }
+    } else {
+      const { id } = await User.findByToken(req.headers.token);
+      cart = await Order.findOne({ where: { userId: id, active: true } });
+    }
 
     let cannotBuy = [];
     const cartItemArray = await CartItem.findAll({
@@ -52,7 +65,6 @@ router.post('/checkout', async (req, res, next) => {
     }
 
     if (cannotBuy.length == 0) {
-      console.log('reaching line 56');
       cartItemArray.forEach(async (item) => {
         let drinkToSubtract = await Drink.findByPk(item.drinkId);
         const currentStock = drinkToSubtract.stock;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const Checkout = (props) => {
   const orderId = props.match.params.orderId;
@@ -13,4 +14,10 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout;
+const mapState = (state) => {
+  return {
+    state: state,
+  };
+};
+
+export default connect(mapState)(Checkout);

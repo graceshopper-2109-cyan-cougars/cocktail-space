@@ -132,9 +132,13 @@ export const checkout = (loggedIn) => {
           await Axios.post('/api/order/checkout', null, { headers: { token } })
         ).data;
       } else {
-        cart = Axios.post('/api/order/checkout', null, {
-          headers: { token: 'guest' },
-        });
+        cart = Axios.post(
+          '/api/order/checkout',
+          { cart: JSON.parse(localStorage.getItem('cart')) },
+          {
+            headers: { token: 'guest' },
+          }
+        );
       }
       if (cart.length == 0) {
         dispatch(_checkout(cart));

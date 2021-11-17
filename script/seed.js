@@ -91,6 +91,7 @@ const seedDrinks = [
 
 const seedUsers = [
   {
+    id: 1,
     username: 'fettuccine@gmail.com',
     password: 'imhungry',
     firstName: 'Fettuccine',
@@ -98,6 +99,7 @@ const seedUsers = [
     isAdmin: true,
   },
   {
+    id: 2,
     username: 'risotto@gmail.com',
     password: 'imhungry',
     firstName: 'Mushroom',
@@ -105,6 +107,7 @@ const seedUsers = [
     isAdmin: false,
   },
   {
+    id: 3,
     username: 'tortelloni@gmail.com',
     password: 'imhungry',
     firstName: 'Tortelloni',

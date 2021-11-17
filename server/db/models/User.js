@@ -3,11 +3,15 @@ const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
-const Order = require('./Order.js');
 
 const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    allowNull: true,
+  },
   username: {
     type: Sequelize.STRING,
     unique: true,
