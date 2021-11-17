@@ -126,28 +126,28 @@ export const checkout = (loggedIn) => {
   return async (dispatch) => {
     try {
       let cart;
+      let responseFromExpress;
       if (loggedIn) {
         const token = localStorage.getItem('token');
-        cart = (
-          await Axios.post('/api/order/checkout', null, { headers: { token } })
-        ).data;
+        responseFromExpress = await Axios.post('/api/order/checkout', null, {
+          headers: { token },
+        });
       } else {
-        cart = (
-          await Axios.post(
-            '/api/order/checkout',
-            { cart: JSON.parse(localStorage.getItem('cart')) },
-            {
-              headers: { token: 'guest' },
-            }
-          )
-        ).data;
+        responseFromExpress = await Axios.post(
+          '/api/order/checkout',
+          { cart: JSON.parse(localStorage.getItem('cart')) },
+          {
+            headers: { token: 'guest' },
+          }
+        );
       }
-      if (cart.length == 0) {
+      if (responseFromExpress.data.cannotBuy == 0) {
         localStorage.setItem('cart', JSON.stringify([]));
-        dispatch(_checkout(cart));
-        return cart;
+        dispatch(_checkout([]));
+
+        return responseFromExpress.data;
       } else {
-        return cart;
+        return responseFromExpress.data;
       }
     } catch (e) {
       return 'something went wrong';
@@ -170,13 +170,6 @@ export default function (state = [], action) {
       return [...state, action.itemToAdd];
     case CHECKOUT:
       return action.cart;
-
-    // case MERGE_CARTS:
-    //     1.loop through the guestCart by item
-    //     2. if the item.drinkId == state[index].drinkId, change state[index].quantity += item.quantity and set guestcart quantity to 0
-
-    //  action.guestCart.forEach((item) => {});
-
     default:
       return state;
   }

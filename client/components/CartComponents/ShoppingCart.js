@@ -16,14 +16,18 @@ class ShoppingCart extends React.Component {
   async handleClick(evt) {
     if (this.props.cart.length > 0) {
       let orderId = this.props.cart[0].orderId;
-      let outOfStockItems = await this.props.checkout(this.props.loggedIn);
+      let responseFromExpress = await this.props.checkout(this.props.loggedIn);
+      let outOfStockItems = responseFromExpress.cannotBuy;
       if (outOfStockItems.length > 0) {
         let alertString = outOfStockItems.reduce((accum, item) => {
           return accum + ' ' + item.name;
         }, '');
         window.alert("We don't have enough" + alertString + ' :(');
       } else {
-        history.push(`/checkout/${orderId}`);
+        const guestOrderId = responseFromExpress.orderId;
+        history.push(
+          `/checkout/${this.props.loggedIn ? orderId : guestOrderId}`
+        );
       }
     } else {
       window.alert('Your cart is empty!');

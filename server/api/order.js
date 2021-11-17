@@ -37,6 +37,7 @@ router.post('/', async (req, res, next) => {
 router.post('/checkout', async (req, res, next) => {
   try {
     let cart;
+    let responseObject;
     if (req.headers.token == 'guest') {
       cart = await Order.create({ userId: null });
       const guestCart = req.body.cart;
@@ -71,9 +72,11 @@ router.post('/checkout', async (req, res, next) => {
         drinkToSubtract.update({ stock: currentStock - item.quantity });
       });
       cart.update({ active: false });
-      res.send([]);
+      responseObject = { cannotBuy: [], orderId: cart.id };
+      res.send(responseObject);
     } else {
-      res.send(cannotBuy);
+      responseObject = { cannotBuy, order: cart.id };
+      res.send(responseObject);
     }
   } catch (e) {
     next(e);
