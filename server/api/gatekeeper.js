@@ -1,7 +1,7 @@
 const {models: { User }} = require('../db')
 
 
-const requireToken = async(req, rest, next) => {
+const requireToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization
     const user = await User.findByToken(token)
@@ -12,10 +12,10 @@ const requireToken = async(req, rest, next) => {
   }
 }
 
-const isAdmin = (req, res, next) =>{
+const isAdmin = (req, res, next) => {
   if(!req.user.isAdmin) {
     return res.status(403).send('Hello, not here')
-  }else {
+  } else {
      next()
   }
 }

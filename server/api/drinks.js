@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const { models: { Drink }} = require('../db')
+const { requireToken, isAdmin } = require('./gatekeeper')
+
 module.exports = router
 
 
