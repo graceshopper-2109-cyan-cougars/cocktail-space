@@ -17,8 +17,7 @@ class ShoppingCart extends React.Component {
     if (this.props.cart.length > 0) {
       let orderId = this.props.cart[0].orderId;
       let outOfStockItems = await this.props.checkout(this.props.loggedIn);
-      console.log(outOfStockItems);
-      if (outOfStockItems) {
+      if (outOfStockItems.length > 0) {
         let alertString = outOfStockItems.reduce((accum, item) => {
           return accum + ' ' + item.name;
         }, '');
@@ -76,11 +75,7 @@ class ShoppingCart extends React.Component {
             </Link>
           </div>
           <div>
-            <button
-              // to={`/checkout/${cart[0] ? cart[0].orderId : 0}`}
-              className='option'
-              onClick={this.handleClick}
-            >
+            <button className='option' onClick={this.handleClick}>
               Checkout
             </button>
           </div>

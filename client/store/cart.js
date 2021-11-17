@@ -132,16 +132,20 @@ export const checkout = (loggedIn) => {
           await Axios.post('/api/order/checkout', null, { headers: { token } })
         ).data;
       } else {
-        cart = Axios.post(
-          '/api/order/checkout',
-          { cart: JSON.parse(localStorage.getItem('cart')) },
-          {
-            headers: { token: 'guest' },
-          }
-        );
+        cart = (
+          await Axios.post(
+            '/api/order/checkout',
+            { cart: JSON.parse(localStorage.getItem('cart')) },
+            {
+              headers: { token: 'guest' },
+            }
+          )
+        ).data;
       }
       if (cart.length == 0) {
+        localStorage.setItem('cart', JSON.stringify([]));
         dispatch(_checkout(cart));
+        return cart;
       } else {
         return cart;
       }
