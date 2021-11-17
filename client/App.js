@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Popup from './components/Popup';
 import Navbar from './components/Navbar';
 import Routes from './Routes';
-import { fetchCart } from './store/cart.js';
+import { fetchCart, mergeCarts } from './store/cart.js';
 import { me } from './store/auth.js';
+import { setDrinks } from './store/drinks';
 
 const App = () => {
   const [timedPopup, setTimedPopup] = useState(false);
+
   const dispatch = useDispatch();
 
   const loggedIn = useSelector((state) => {
@@ -18,9 +20,14 @@ const App = () => {
   });
 
   useEffect(() => {
-    setTimeout(() => {
-      setTimedPopup(true);
-    }, 600);
+    const popupModalValue = localStorage.getItem('popupModal');
+    if (!popupModalValue) {
+      const timer = setTimeout(() => {
+        setTimedPopup(true);
+        localStorage.setItem('popupModal', '1');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {

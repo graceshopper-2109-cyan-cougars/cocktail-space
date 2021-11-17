@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
+import { mergeCarts } from '../store/cart.js';
 import { Link, useHistory } from 'react-router-dom';
 
 const Login = (props) => {
@@ -59,6 +60,7 @@ const mapDispatch = (dispatch) => {
       const username = evt.target.username.value;
       const password = evt.target.password.value;
       dispatch(authenticate(username, password, formName));
+      // dispatch(mergeCarts(JSON.parse(localStorage.getItem('cart'))));
     },
   };
 };

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Order, CartItem, User },
+  models: { Order, CartItem, User, Drink },
 } = require('../db/index');
 
 // find the user corresponding to the token, and return the items in that user's single active order ( the user's cart )
@@ -23,6 +23,7 @@ router.post('/', async (req, res, next) => {
   try {
     const { id } = await User.findByToken(req.headers.token);
     let cart = await Order.findOne({ where: { userId: id, active: true } });
+
     if (!cart) {
       cart = await Order.create({ userId: id });
     }
@@ -35,10 +36,33 @@ router.post('/', async (req, res, next) => {
 
 router.post('/checkout', async (req, res, next) => {
   try {
-    const { id } = await User.findByToken(req.body.token);
+    const { id } = await User.findByToken(req.headers.token);
     const cart = await Order.findOne({ where: { userId: id, active: true } });
-    cart.update({ active: false });
-    res.send([]);
+
+    let cannotBuy = [];
+    const cartItemArray = await CartItem.findAll({
+      where: { orderId: cart.id },
+    });
+
+    for (const item of cartItemArray) {
+      let drinkToCheck = await Drink.findByPk(item.drinkId);
+      if (item.quantity > drinkToCheck.stock) {
+        cannotBuy.push(drinkToCheck);
+      }
+    }
+
+    if (cannotBuy.length == 0) {
+      console.log('reaching line 56');
+      cartItemArray.forEach(async (item) => {
+        let drinkToSubtract = await Drink.findByPk(item.drinkId);
+        const currentStock = drinkToSubtract.stock;
+        drinkToSubtract.update({ stock: currentStock - item.quantity });
+      });
+      cart.update({ active: false });
+      res.send([]);
+    } else {
+      res.send(cannotBuy);
+    }
   } catch (e) {
     next(e);
   }
