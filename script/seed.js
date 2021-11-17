@@ -13,7 +13,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/dumbomanhattan.jpeg',
     stock: 15,
-    description: 'Our take on the classic manhattan, made locally from our storefront in Dumbo.',
+    description:
+      'Our take on the classic manhattan, made locally from our storefront in Dumbo.',
   },
   {
     name: 'Tequila Sunset',
@@ -22,7 +23,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/tequilasunset.jpeg',
     stock: 10,
-    description: 'With orange juice, Tequila, and blackberry brandy, it’s easy on your palate and enjoyable any time of day.',
+    description:
+      'With orange juice, Tequila, and blackberry brandy, it’s easy on your palate and enjoyable any time of day.',
   },
   {
     name: 'Watermelon Daiquiri',
@@ -31,7 +33,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/watermelondaquari.jpeg',
     stock: 15,
-    description: 'Preparing fresh watermelon juice gives this blend-and-sip cocktail a burst of cool melon flavor.',
+    description:
+      'Preparing fresh watermelon juice gives this blend-and-sip cocktail a burst of cool melon flavor.',
   },
   {
     name: 'Orange Martini',
@@ -40,7 +43,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/orangemartini.jpeg',
     stock: 20,
-    description: 'The perfect easy Orange Martini is made with vodka, triple sec, and freshly squeezed orange juice with oranges from the orange groves of Florida!',
+    description:
+      'The perfect easy Orange Martini is made with vodka, triple sec, and freshly squeezed orange juice with oranges from the orange groves of Florida!',
   },
   {
     name: 'Espresso Martini',
@@ -49,7 +53,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/espressomartini.jpeg',
     stock: 20,
-    description: 'Our espresso martini is a cold, coffee-flavored cocktail made with vodka, espresso coffee, and coffee liqueur.',
+    description:
+      'Our espresso martini is a cold, coffee-flavored cocktail made with vodka, espresso coffee, and coffee liqueur.',
   },
   {
     name: 'Berry Mojito',
@@ -58,7 +63,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/berrymojito.jpeg',
     stock: 15,
-    description: 'This mixed berry mojito combines delicious raspberries, blackberries, mint, and rum. It is one of our best sellers!',
+    description:
+      'This mixed berry mojito combines delicious raspberries, blackberries, mint, and rum. It is one of our best sellers!',
   },
   {
     name: 'Rhubarb Perfection',
@@ -67,7 +73,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/rhubarbperfection.jpeg',
     stock: 15,
-    description: 'This Rhubarb Bourbon Sour Cocktail recipe with a honey rhubarb simple syrup is a refreshing and seasonal take on the classic drink.',
+    description:
+      'This Rhubarb Bourbon Sour Cocktail recipe with a honey rhubarb simple syrup is a refreshing and seasonal take on the classic drink.',
   },
   {
     name: 'Mezcal Old Fashioned',
@@ -76,7 +83,8 @@ const seedDrinks = [
     alcoholContent: 80,
     image: 'Content/mezcaloldfashioned.jpeg',
     stock: 25,
-    description: 'The Mezcal Old Fashioned, also called the Oaxaca Old Fashioned is a smoky agave version of the classic Old Fashioned Cocktail.',
+    description:
+      'The Mezcal Old Fashioned, also called the Oaxaca Old Fashioned is a smoky agave version of the classic Old Fashioned Cocktail.',
   },
   // {
   //   name: ,
