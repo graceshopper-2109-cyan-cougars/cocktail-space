@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
 import { Link, useHistory } from 'react-router-dom';
+import history from "../history";
 
 const Login = (props) => {
   const { name, displayName, handleSubmit, error } = props;
@@ -26,9 +27,8 @@ const Login = (props) => {
           {error && error.response && <div> {error.response.data} </div>}
         </form>
 
-        <button onClick={handleSubmit} className='login__registerButton'>
+        <button className='login__registerButton' onClick={()=>{history.push(`/signup`)}}>
           Create your Cocktail Store Account
-          {/* Need newUserForm Component to fill out and history.push(/newUserForm) on click */}
         </button>
       </div>
     </div>

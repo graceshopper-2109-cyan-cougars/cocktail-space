@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchingSingleDrink } from '../store/singledrinks';
 import { addItem, updateQty } from '../store/cart.js';
+import history from "../history";
 
 export class SingleDrinkDetail extends React.Component {
   constructor() {
@@ -35,7 +36,7 @@ export class SingleDrinkDetail extends React.Component {
     return (
       <div className='singleDrinkContainer'>
         <div className='detailsWrapper'>
-          <img className='detailsImage' src={currentDrink.image}></img>
+          <img className='detailsImage' src={`/${currentDrink.image}`}></img>
           <button className='detailsButton' onClick={this.handleClick}>
             Add to cart
           </button>
@@ -45,8 +46,12 @@ export class SingleDrinkDetail extends React.Component {
           <p>Price: {currentDrink.price}</p>
           <p>Alcohol Content: {currentDrink.alcoholContent}</p>
           <p>Current Stock: {currentDrink.stock}</p>
+          <div>
           <p>{currentDrink.description}</p>
+          </div>
+                  <button className="detailsButton" onClick={()=>{history.push(`/home`)}}>Return To Homepage</button>
         </div>
+
       </div>
     );
   }
