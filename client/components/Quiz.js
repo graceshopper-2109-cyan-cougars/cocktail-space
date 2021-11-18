@@ -60,9 +60,9 @@ export default function Quiz() {
     {
       questionText: `Where does The Muffin Man live?`,
       answerOptions: [
-        { answerText: 'Australia', isCorrect: false },
+        { answerText: 'Drury Yoda', isCorrect: false },
         { answerText: 'Doda Lane', isCorrect: false },
-        { answerText: 'West Virginia', isCorrect: false },
+        { answerText: 'Drury Duda', isCorrect: false },
         { answerText: 'Drury Lane', isCorrect: true },
       ],
     },
