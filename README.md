@@ -2,6 +2,10 @@
 
 An e-commerce website where you can purchase your favorite drinks!
 
+  <img src="public/pics/cocktail-space-home.jpg" alt="home" width="600"/>
+  <img src="public/pics/cocktail-space-cart.jpg" alt="cart" width="600"/>
+
+
 ## Deployed App
 
 - https://cocktail-space.herokuapp.com/home
